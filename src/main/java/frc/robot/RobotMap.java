@@ -6,6 +6,7 @@
 /*----------------------------------------------------------------------------*/
 
 package frc.robot;
+import edu.wpi.first.wpilibj.Talon;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -23,4 +24,6 @@ public class RobotMap {
   // number and the module. For example you with a rangefinder:
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
+  public static final int WHEEL_CONTROLLER_PORT = 0;
 }
+
