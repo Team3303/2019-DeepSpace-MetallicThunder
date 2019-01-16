@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.ExampleCommand;
+import frc.robot.commands.WheelTest;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.*;
 
@@ -29,6 +30,7 @@ public class Robot extends TimedRobot {
   public static Wheel wheel;
 
   Command m_autonomousCommand;
+  Command wheelTest;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   /**
@@ -42,6 +44,7 @@ public class Robot extends TimedRobot {
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
+    wheelTest = new WheelTest();
   }
 
   /**
@@ -93,8 +96,8 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.start();
+    if (wheelTest != null) {
+      wheelTest.start();
     }
   }
 
