@@ -19,12 +19,12 @@ public class Wheel extends Subsystem {
 
   private Talon wheelController;
 
-  public Wheel(int portnum){
-    wheelController = new Talon(portnum);
+  public Wheel(int portNum){
+    wheelController = new Talon(portNum);
   }
 
-public void turnLeft() {
-  wheelController.set(1.0);
+public void turn(float speed) {
+  wheelController.set(speed);
 }
 public void stop() {
   wheelController.set(0.0);
@@ -36,5 +36,3 @@ public void stop() {
     // setDefaultCommand(new MySpecialCommand());
   }
 }
-
-

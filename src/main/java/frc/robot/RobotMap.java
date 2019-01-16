@@ -25,5 +25,5 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
   public static final int WHEEL_CONTROLLER_PORT = 0;
+  //public static final int NOTHING = voidnullnada;
 }
-
