@@ -9,17 +9,19 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Wheel;
 
 public class WheelTest extends Command {
   public WheelTest() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
+    requires(Robot.wheel);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    setTimeout(0.9);
+    setTimeout(2);
     Robot.wheel.turn(1);
   }
 
