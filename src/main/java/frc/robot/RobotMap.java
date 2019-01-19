@@ -25,5 +25,9 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
   public static final int WHEEL_CONTROLLER_PORT = 0;
+  public static final int TALON_FL_ID = 1234;
+  public static final int TALON_FR_ID = 4321;
+  public static final int TALON_BL_ID = 2314;
+  public static final int TALON_BR_ID = 3412;
   //public static final int NOTHING = voidnullnada;
 }

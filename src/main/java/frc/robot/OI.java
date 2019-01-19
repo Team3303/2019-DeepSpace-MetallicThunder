@@ -8,6 +8,7 @@
 package frc.robot;
 
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import frc.robot.commands.WheelTest;
@@ -44,11 +45,24 @@ public class OI {
   // Start the command when the button is released and let it run the command
   // until it is finished as determined by it's isFinished method.
   // button.whenReleased(new ExampleCommand());
-  Joystick button = new Joystick(0);
-  Button button1 = new JoystickButton(button, 1);
+  Joystick gamepad = new Joystick(0);
+  Joystick joystick_left = new Joystick(1);
+  Joystick joystick_right = new Joystick(2);
+  Button button1 = new JoystickButton(gamepad, 1);
+  
+  public double getLeftJoystick(){
+    return joystick_left.getZ();
+  }
+
+  public double getRightJoystick(){
+    return joystick_right.getAxis(AxisType.kZ);
+  }
+
+
   public OI() {
   
 
-  button1.whenPressed(new WheelTest());
+  //button1.whenPressed(new WheelTest());
+  
   }
 }

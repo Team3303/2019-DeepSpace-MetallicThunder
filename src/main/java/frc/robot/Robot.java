@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.WheelTest;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -31,6 +32,7 @@ public class Robot extends TimedRobot {
   public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
+  public static DriveTrain driveTrain = new DriveTrain();
 
   Command m_autonomousCommand;
   Command wheelTest;
@@ -66,7 +68,7 @@ public class Robot extends TimedRobot {
   public void robotPeriodic() {
   }
 
-  /**
+  /**s
    * This function is called once each time the robot enters Disabled mode.
    * You can use it to reset any subsystem information you want to clear when
    * the robot is disabled.
