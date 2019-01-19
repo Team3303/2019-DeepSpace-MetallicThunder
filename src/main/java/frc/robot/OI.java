@@ -51,18 +51,18 @@ public class OI {
   Button button1 = new JoystickButton(gamepad, 1);
   
   public double getLeftJoystick(){
-    return joystick_left.getZ();
+    return -joystick_left.getY();
   }
 
   public double getRightJoystick(){
-    return joystick_right.getAxis(AxisType.kZ);
+    return -joystick_right.getY();
   }
 
 
   public OI() {
   
 
-  //button1.whenPressed(new WheelTest());
+    button1.whenPressed(new WheelTest());
   
   }
 }

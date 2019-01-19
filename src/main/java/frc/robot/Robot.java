@@ -16,6 +16,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.WheelTest;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -36,6 +37,7 @@ public class Robot extends TimedRobot {
 
   Command m_autonomousCommand;
   Command wheelTest;
+  Command drive;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
   TalonSRX mytalon = new TalonSRX(0);
@@ -52,6 +54,7 @@ public class Robot extends TimedRobot {
     SmartDashboard.putData("Auto mode", m_chooser);
     //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
     wheelTest = new WheelTest();
+    drive = new DriveWithJoysticks();
 
     mytalon.set(ControlMode.PercentOutput, 0);
   }
@@ -127,6 +130,7 @@ public class Robot extends TimedRobot {
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
     }
+    drive.start();
   }
 
   /**
