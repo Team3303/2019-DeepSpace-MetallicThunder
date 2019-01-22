@@ -17,9 +17,6 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.DriveWithJoysticks;
-import frc.robot.commands.ExampleCommand;
-import frc.robot.commands.WheelTest;
-import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.*;
 
 /**
@@ -30,7 +27,6 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static ExampleSubsystem m_subsystem = new ExampleSubsystem();
   public static OI m_oi;
   public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
   public static DriveTrain driveTrain = new DriveTrain();
@@ -49,11 +45,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     m_oi = new OI();
-    m_chooser.setDefaultOption("Default Auto", new ExampleCommand());
+    // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
     //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
-    wheelTest = new WheelTest();
     drive = new DriveWithJoysticks();
 
     mytalon.set(ControlMode.PercentOutput, 0);
@@ -108,9 +103,7 @@ public class Robot extends TimedRobot {
      */
 
     // schedule the autonomous command (example)
-    if (wheelTest != null) {
-      wheelTest.start();
-    }
+    // if (commandObject != null)
   }
 
   /**
