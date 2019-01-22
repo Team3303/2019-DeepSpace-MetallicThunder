@@ -20,7 +20,7 @@ import frc.robot.commands.WheelTest;
 public class OI {
   //// CREATING BUTTONS
   // One type of button is a joystick button which is any button on a
-  //// joystick.
+  //// joysick.
   // You create one by telling it which joystick it's on and which button
   // number it is.
   // Joystick stick = new Joystick(port);
@@ -50,19 +50,43 @@ public class OI {
   Joystick joystick_right = new Joystick(2);
   Button button1 = new JoystickButton(gamepad, 1);
   
-  public double getLeftJoystick(){
-    return -joystick_left.getY();
-  }
+  // LEFT JOYSTICK
+  public double getLeftJoystickX(){ return joystick_left.getX(); }
+  public double getLeftJoystickY() { return joystick_left.getY(); }
+  public double getLeftJoystickZ() { return joystick_left.getZ(); }
+  public boolean getLeftJoystick1() { return joystick_left.getRawButton(1); }
+  public boolean getLeftJoystick2() { return joystick_left.getRawButton(2); }
+  public boolean getLeftJoystick3() { return joystick_left.getRawButton(3); }
+  public boolean getLeftJoystick4() { return joystick_left.getRawButton(4); }
+  public boolean getLeftJoystick5() { return joystick_left.getRawButton(5); }
+  public boolean getLeftJoystick6() { return joystick_left.getRawButton(6); }
+  public boolean getLeftJoystick7() { return joystick_left.getRawButton(7); }
+  public boolean getLeftJoystick8() { return joystick_left.getRawButton(8); }
+  public boolean getLeftJoystick9() { return joystick_left.getRawButton(9); }
+  public boolean getLeftJoystick10() { return joystick_left.getRawButton(10); }
+  public boolean getLeftJoystick11() { return joystick_left.getRawButton(11); }
+  public boolean getLeftJoystick12() { return joystick_left.getRawButton(12); }
 
-  public double getRightJoystick(){
-    return -joystick_right.getY();
-  }
+  // RIGHT JOYSTICK - GENERATED WITH A RAD BOOMER VIM MACRO USING LEFT JOYSTICK
+  public double getRightJoystickX() { return joystick_right.getX(); }
+  public double getRightJoystickY() { return joystick_right.getY(); }
+  public double getRightJoystickZ() { return joystick_right.getZ(); }
+  public boolean getRightJoystick1() { return joystick_right.getRawButton(1); }
+  public boolean getRightJoystick2() { return joystick_right.getRawButton(2); }
+  public boolean getRightJoystick3() { return joystick_right.getRawButton(3); }
+  public boolean getRightJoystick4() { return joystick_right.getRawButton(4); }
+  public boolean getRightJoystick5() { return joystick_right.getRawButton(5); }
+  public boolean getRightJoystick6() { return joystick_right.getRawButton(6); }
+  public boolean getRightJoystick7() { return joystick_right.getRawButton(7); }
+  public boolean getRightJoystick8() { return joystick_right.getRawButton(8); }
+  public boolean getRightJoystick9() { return joystick_right.getRawButton(9); }
+  public boolean getRightJoystick10() { return joystick_right.getRawButton(10); }
+  public boolean getRightJoystick11() { return joystick_right.getRawButton(11); }
+  public boolean getRightJoystick12() { return joystick_right.getRawButton(12); }
 
-
+  // This constructor is to define macros for the Joystick and Gamepad buttons.
   public OI() {
-  
-
-    button1.whenPressed(new WheelTest());
+  //button1.whenPressed(new WheelTest());
   
   }
 }
