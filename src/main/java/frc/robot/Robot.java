@@ -1,9 +1,9 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------*
+ * Copyright (c) 2017-2018 FIRST. All Rights Reserved.                        *
+ * Open Source Software - may be modified and shared by FRC teams. The code   *
+ * must be accompanied by the FIRST BSD license file in the root directory of *
+ * the project.                                                               *
+ *----------------------------------------------------------------------------*/
 
 package frc.robot;
 
@@ -27,9 +27,10 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi;
+  public static OI m_oi = new OI();
   public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
   public static DriveTrain driveTrain = new DriveTrain();
+
 
   Command m_autonomousCommand;
   Command wheelTest;
@@ -44,7 +45,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    m_oi = new OI();
+    // m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -138,6 +139,5 @@ public class Robot extends TimedRobot {
    * This function is called periodically during test mode.
    */
   @Override
-  public void testPeriodic() {
-  }
+  public void testPeriodic() { }
 }

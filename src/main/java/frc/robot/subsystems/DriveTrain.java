@@ -29,7 +29,6 @@ public class DriveTrain extends Subsystem {
   WPI_TalonSRX talon_BR;
 
   DifferentialDrive differentialDrive;
-  boolean directionToggle = false;
   
   public DriveTrain() {
     talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
@@ -43,15 +42,8 @@ public class DriveTrain extends Subsystem {
     talon_BR.follow(talon_FR);
   }
 
-  public void switchDirection(){
-    directionToggle = !directionToggle;
-  }
-
   public void tankDrive(double leftValue, double rightValue) {
-    if (!directionToggle)
-      differentialDrive.tankDrive(leftValue, rightValue);
-    if (directionToggle)
-      differentialDrive.tankDrive(-leftValue, -rightValue);
+    differentialDrive.tankDrive(leftValue, rightValue);
   }
 
   @Override
