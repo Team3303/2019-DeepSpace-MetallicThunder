@@ -27,7 +27,7 @@ import frc.robot.subsystems.*;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi = new OI();
+  public static OI m_oi;// = new OI();
   public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
   public static DriveTrain driveTrain = new DriveTrain();
 
@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotInit() {
-    // m_oi = new OI();
+    m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
