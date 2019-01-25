@@ -11,6 +11,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.command.Command;
 
 import frc.robot.commands.*;
 
@@ -50,6 +51,8 @@ public class OI {
   Joystick joystick_left = new Joystick(1);
   Joystick joystick_right = new Joystick(2);
   Button button1 = new JoystickButton(gamepad, 1);
+
+  Command driveInverse;
 
   Button leftJoystickButton1 = new JoystickButton(joystick_left, 1);
   Button leftJoystickButton2 = new JoystickButton(joystick_left, 2);
@@ -95,7 +98,8 @@ public class OI {
 
   // This constructor is to define macros for the Joystick and Gamepad buttons.
   public OI() {
-    rightJoystickButton5.whileHeld(new DriveWithJoysticksInverted());
+    driveInverse = new DriveWithJoysticksInverted();
+    rightJoystickButton5.whileHeld(driveInverse);
   }
 
 }

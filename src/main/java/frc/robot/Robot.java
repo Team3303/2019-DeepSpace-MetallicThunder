@@ -17,7 +17,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.DriveWithJoysticks;
+import frc.robot.commands.DriveWithJoysticksInverted;
 import frc.robot.subsystems.*;
+import frc.robot.OI.*;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -133,6 +135,8 @@ public class Robot extends TimedRobot {
   @Override
   public void teleopPeriodic() {
     Scheduler.getInstance().run();
+    if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
+      drive.start();
   }
 
   /**
