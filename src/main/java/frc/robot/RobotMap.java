@@ -7,6 +7,7 @@
 
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.sensors.PigeonIMU;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
@@ -39,6 +40,8 @@ public class RobotMap {
   public static WPI_TalonSRX talon_BL;
   public static WPI_TalonSRX talon_BR;
   public static PigeonIMU pigeon;
+
+  public static DoubleSolenoid clawSolenoid;
 
   public static void init(){
     talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
