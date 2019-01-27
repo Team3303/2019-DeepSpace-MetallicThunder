@@ -16,6 +16,7 @@ import frc.robot.Robot;
 
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import frc.robot.Robot;
+import com.ctre.phoenix.sensors.PigeonIMU;
 
 /**
  * Add your docs here.
@@ -27,15 +28,16 @@ public class DriveTrain extends Subsystem {
   WPI_TalonSRX talon_FR;
   WPI_TalonSRX talon_BL;
   WPI_TalonSRX talon_BR;
+  PigeonIMU pigeon;
 
   DifferentialDrive differentialDrive;
   
   public DriveTrain() {
-    talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
-    talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
-    talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
-    talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
-
+    talon_FL = RobotMap.talon_FL;
+    talon_FR = RobotMap.talon_FR;
+    talon_FR = RobotMap.talon_BL;
+    talon_FR = RobotMap.talon_BR;
+    pigeon = RobotMap.pigeon;
     differentialDrive = new DifferentialDrive(talon_FL, talon_FR);
 
     talon_BL.follow(talon_FL);

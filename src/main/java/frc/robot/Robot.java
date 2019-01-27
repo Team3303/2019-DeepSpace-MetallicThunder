@@ -20,6 +20,8 @@ import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.DriveWithJoysticksInverted;
 import frc.robot.subsystems.*;
 import frc.robot.OI.*;
+import edu.wpi.first.cameraserver.CameraServer;
+import static frc.robot.RobotMap.outputValues;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -39,14 +41,13 @@ public class Robot extends TimedRobot {
   Command drive;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  TalonSRX mytalon = new TalonSRX(0);
-
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
    */
   @Override
   public void robotInit() {
+    RobotMap.init();
     m_oi = new OI();
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
@@ -54,7 +55,9 @@ public class Robot extends TimedRobot {
     //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
     drive = new DriveWithJoysticks();
 
-    mytalon.set(ControlMode.PercentOutput, 0);
+    CameraServer.getInstance().startAutomaticCapture(0);
+    CameraServer.getInstance().startAutomaticCapture(1);
+    
   }
 
   /**
@@ -137,6 +140,8 @@ public class Robot extends TimedRobot {
     Scheduler.getInstance().run();
     if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
       drive.start();
+    
+    outputValues();
   }
 
   /**
