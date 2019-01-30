@@ -18,11 +18,11 @@ public class Claw extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
 
-  void clawOpen() {
+  public void clawOpen() {
     clawSolenoid.set(Value.kForward);
   }
 
-  void clawClose() {
+  public void clawClose() {
     clawSolenoid.set(Value.kReverse);
   }
 

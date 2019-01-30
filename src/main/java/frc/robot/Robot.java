@@ -34,6 +34,7 @@ public class Robot extends TimedRobot {
   public static OI m_oi;// = new OI();
   public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
   public static DriveTrain driveTrain = new DriveTrain();
+  public static Claw claw = new Claw();
 
 
   Command m_autonomousCommand;

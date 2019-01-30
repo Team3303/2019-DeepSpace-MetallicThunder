@@ -12,7 +12,6 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-
 import frc.robot.commands.*;
 
 /**
@@ -80,11 +79,20 @@ public class OI {
   Button rightJoystickButton11 = new JoystickButton(joystick_right, 11);
   Button rightJoystickButton12 = new JoystickButton(joystick_right, 12);
 
+  // Gamepad
+  Button gamepadButton1  = new JoystickButton(gamepad, 1  );
+  Button gamepadButton2  = new JoystickButton(gamepad, 2  );
+  Button gamepadButton3  = new JoystickButton(gamepad, 3  );
+  Button gamepadButton4  = new JoystickButton(gamepad, 4  );
+  Button gamepadButton5  = new JoystickButton(gamepad, 5  );
+  Button gamepadButton6  = new JoystickButton(gamepad, 6  );
+  Button gamepadButton7  = new JoystickButton(gamepad, 7  );
+  Button gamepadButton8  = new JoystickButton(gamepad, 8  );
+  Button gamepadButton9  = new JoystickButton(gamepad, 9  );
+  Button gamepadButton10 = new JoystickButton(gamepad, 10 );
+  Button gamepadButton11 = new JoystickButton(gamepad, 11 );
+  Button gamepadButton12 = new JoystickButton(gamepad, 12 );
 
-
-
-
-  
   // LEFT JOYSTICK
   public double getLeftJoystickX(){ return joystick_left.getX(); }
   public double getLeftJoystickY() { return joystick_left.getY(); }
@@ -95,11 +103,12 @@ public class OI {
   public double getRightJoystickY() { return joystick_right.getY(); }
   public double getRightJoystickZ() { return joystick_right.getZ(); }
 
-
   // This constructor is to define macros for the Joystick and Gamepad buttons.
   public OI() {
     driveInverse = new DriveWithJoysticksInverted();
     rightJoystickButton5.whileHeld(driveInverse);
+    gamepadButton5.whenPressed(new ClawOpen());
+    gamepadButton6.whenPressed(new ClawClose());
   }
 
 }
