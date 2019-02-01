@@ -22,6 +22,7 @@ import frc.robot.subsystems.*;
 import frc.robot.OI.*;
 import edu.wpi.first.cameraserver.CameraServer;
 import static frc.robot.RobotMap.outputValues;
+import edu.wpi.first.wpilibj.Compressor;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -32,13 +33,12 @@ import static frc.robot.RobotMap.outputValues;
  */
 public class Robot extends TimedRobot {
   public static OI m_oi;// = new OI();
-  public static Wheel wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
-  public static DriveTrain driveTrain = new DriveTrain();
-  public static Claw claw = new Claw();
+  public static DriveTrain driveTrain; // = new DriveTrain();
+  public static Claw claw; // = new Claw();
+  Compressor compressor; //= new Compressor(0);
 
 
   Command m_autonomousCommand;
-  Command wheelTest;
   Command drive;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
@@ -49,7 +49,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     RobotMap.init();
+    driveTrain = new DriveTrain();
+    claw = new Claw();
     m_oi = new OI();
+     compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -123,6 +126,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
+     compressor.setClosedLoopControl(true); 
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove

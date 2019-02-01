@@ -35,8 +35,8 @@ public class DriveTrain extends Subsystem {
   public DriveTrain() {
     talon_FL = RobotMap.talon_FL;
     talon_FR = RobotMap.talon_FR;
-    talon_FR = RobotMap.talon_BL;
-    talon_FR = RobotMap.talon_BR;
+    talon_BL = RobotMap.talon_BL;
+    talon_BR = RobotMap.talon_BR;
     pigeon = RobotMap.pigeon;
     differentialDrive = new DifferentialDrive(talon_FL, talon_FR);
 
