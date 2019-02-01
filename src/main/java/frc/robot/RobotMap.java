@@ -48,12 +48,26 @@ public class RobotMap {
     talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
     talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
     talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
+    clawSolenoid = new DoubleSolenoid(0, 1);
     pigeon = new PigeonIMU(0);
   } 
   public static void outputValues(){
     double [] ypr = new double[3];
     pigeon.getYawPitchRoll(ypr);
     SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
+    
+    switch(clawSolenoid.get()){
+      case kOff:
+        SmartDashboard.putString("Solenoid State", "Off");
+        break;
+      case kReverse:
+        SmartDashboard.putString("Solenoid State", "Reverse");
+        break;
+      case kForward:
+        SmartDashboard.putString("Solenoid State", "Forward");
+        break;
+
+    }
   }
 
 
