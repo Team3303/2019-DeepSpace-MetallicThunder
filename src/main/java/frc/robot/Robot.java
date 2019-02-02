@@ -35,6 +35,8 @@ public class Robot extends TimedRobot {
   public static OI m_oi;// = new OI();
   public static DriveTrain driveTrain; // = new DriveTrain();
   public static Claw claw; // = new Claw();
+  public static BallIntake ballIntake;
+  public static boolean isOnClaw = true;
   Compressor compressor; //= new Compressor(0);
 
 
@@ -49,9 +51,10 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     RobotMap.init();
+    m_oi = new OI();
     driveTrain = new DriveTrain();
     claw = new Claw();
-    m_oi = new OI();
+    ballIntake = new BallIntake();
      compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

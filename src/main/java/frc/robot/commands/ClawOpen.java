@@ -21,7 +21,7 @@ public class ClawOpen extends InstantCommand {
    */
   public ClawOpen() {
     super();
-    requires(Robot.claw);
+    //requires(Robot.claw);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

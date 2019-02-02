@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.*;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -92,7 +93,8 @@ public class OI {
   Button gamepadButton10 = new JoystickButton(gamepad, 10 );
   Button gamepadButton11 = new JoystickButton(gamepad, 11 );
   Button gamepadButton12 = new JoystickButton(gamepad, 12 );
-
+  Button gamepadPOVL = new POVButton(gamepad, 270);
+  Button gamepadPOVR = new POVButton(gamepad, 90);
   // LEFT JOYSTICK
   public double getLeftJoystickX(){ return joystick_left.getX(); }
   public double getLeftJoystickY() { return joystick_left.getY(); }
@@ -107,8 +109,10 @@ public class OI {
   public OI() {
     driveInverse = new DriveWithJoysticksInverted();
     rightJoystickButton5.whileHeld(driveInverse);
-    gamepadButton5.whenPressed(new ClawOpen());
-    gamepadButton6.whenPressed(new ClawClose());
+    gamepadPOVL.whenPressed(new SetToClaw());
+    gamepadPOVR.whenPressed(new SetToBallIntake());
+    gamepadButton5.whileHeld(new Intake());
+    gamepadButton6.whileHeld(new Outtake());
   }
 
 }

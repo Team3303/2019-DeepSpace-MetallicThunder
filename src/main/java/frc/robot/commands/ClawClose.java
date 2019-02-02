@@ -21,7 +21,7 @@ public class ClawClose extends InstantCommand {
    */
   public ClawClose() {
     super();
-    requires(Robot.claw);
+    //requires(Robot.claw);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }

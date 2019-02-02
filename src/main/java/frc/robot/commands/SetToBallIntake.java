@@ -5,28 +5,30 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.subsystems;
+package frc.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-import static frc.robot.RobotMap.*;
+import edu.wpi.first.wpilibj.command.InstantCommand;
+import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class BallIntake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-
-  public BallIntake() {
-    talon_BIL.follow(talon_BIR);
+public class SetToBallIntake extends InstantCommand {
+  /**
+   * Add your docs here.
+   */
+  public SetToBallIntake() {
+    super();
+    // Use requires() here to declare subsystem dependencies
+    // eg. requires(chassis);
+    requires(Robot.ballIntake);
+    requires(Robot.claw);
   }
 
-  public void ballIntakeOpen(double speed) {
-    talon_BIR.set(speed);
-  }
+  // Called once when the command executes
   @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
+  protected void initialize() {
+    Robot.isOnClaw = false;
   }
+
 }
