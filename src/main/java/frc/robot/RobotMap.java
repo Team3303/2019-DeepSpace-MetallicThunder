@@ -7,8 +7,9 @@
 
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-import edu.wpi.first.wpilibj.DoubleSolenoid;
 import com.ctre.phoenix.sensors.PigeonIMU;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.Encoder;
 
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -50,6 +51,7 @@ public class RobotMap {
   public static PigeonIMU pigeon;
 
   public static DoubleSolenoid clawSolenoid;
+  public static Encoder encoder;
 
   public static void init(){
     talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
@@ -62,11 +64,13 @@ public class RobotMap {
     talon_EB = new WPI_TalonSRX(TALON_EB_ID);
     clawSolenoid = new DoubleSolenoid(0, 1);
     pigeon = new PigeonIMU(0);
+    encoder = new Encoder();
   } 
   public static void outputValues(){
     double [] ypr = new double[3];
     pigeon.getYawPitchRoll(ypr);
     SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
+    // SmartDashboard.putNumber("Encoder Value", encoder.)
     
    /* switch(clawSolenoid.get()){
       case kOff:
@@ -81,7 +85,5 @@ public class RobotMap {
 
     }*/
   }
-
-
 
 }
