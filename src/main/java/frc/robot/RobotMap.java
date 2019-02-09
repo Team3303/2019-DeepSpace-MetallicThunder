@@ -30,18 +30,22 @@ public class RobotMap {
   // public static int rangefinderModule = 1;
   public static final int WHEEL_CONTROLLER_PORT = 0;
   public static final int TALON_FL_ID = 5;
+
   public static final int TALON_BL_ID = 6;
   public static final int TALON_FR_ID = 3;
   public static final int TALON_BR_ID = 4;
   public static final int TALON_BIR_ID = 1;
   public static final int TALON_BIL_ID = 2;
-  //public static final int NOTHING = voidnullnada;
+  public static final int TALON_EH_ID = 666;
+  public static final int TALON_EB_ID = 777;
 
   public static WPI_TalonSRX talon_FL;
   public static WPI_TalonSRX talon_FR;
   public static WPI_TalonSRX talon_BL;
   public static WPI_TalonSRX talon_BR;
   public static WPI_TalonSRX talon_BIR;
+  public static WPI_TalonSRX talon_EH;
+  public static WPI_TalonSRX talon_EB;
   public static WPI_TalonSRX talon_BIL;
   public static PigeonIMU pigeon;
 
@@ -54,6 +58,8 @@ public class RobotMap {
     talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
     talon_BIR = new WPI_TalonSRX(RobotMap.TALON_BIR_ID);
     talon_BIL = new WPI_TalonSRX(RobotMap.TALON_BIL_ID);
+    talon_EH = new WPI_TalonSRX(TALON_EH_ID);
+    talon_EB = new WPI_TalonSRX(TALON_EB_ID);
     clawSolenoid = new DoubleSolenoid(0, 1);
     pigeon = new PigeonIMU(0);
   } 

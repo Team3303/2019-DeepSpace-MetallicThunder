@@ -15,13 +15,17 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.DriveWithJoysticks;
 import frc.robot.commands.DriveWithJoysticksInverted;
+import static frc.robot.RobotMap.*;
+import static frc.robot.RobotMap.outputValues;
+import frc.robot.subsystems.Elevator.*;
 import frc.robot.subsystems.*;
 import frc.robot.OI.*;
+
 import edu.wpi.first.cameraserver.CameraServer;
-import static frc.robot.RobotMap.outputValues;
 import edu.wpi.first.wpilibj.Compressor;
 
 /**
@@ -36,7 +40,8 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain; // = new DriveTrain();
   public static Claw claw; // = new Claw();
   public static BallIntake ballIntake;
-  public static Elevator elevator;
+  public static Elevator elevatorHatch;
+  public static Elevator elevatorBall;
   public static boolean isOnClaw = true;
   Compressor compressor; //= new Compressor(0);
 
@@ -56,7 +61,8 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     claw = new Claw();
     ballIntake = new BallIntake();
-    elevator = new Elevator();
+    elevatorHatch = new Elevator(talon_EH);
+    elevatorBall = new Elevator(talon_EB);
     compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());

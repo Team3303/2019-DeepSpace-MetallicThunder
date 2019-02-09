@@ -1,38 +1,43 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.RobotMap;
+
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 /**
- * Add your docs here.
+ * Subsystem definition for thr Robot elevator.
  */
 public class Elevator extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
 
-  private Talon wheelController;
+  WPI_TalonSRX elevator;
 
-  public Elevator(){
-    talon_EB = new Talon(talon_EB);
+  /**
+   * Instantiates the Talon.
+   */
+  public Elevator(WPI_TalonSRX TalonSRX){
+    this.elevator = TalonSRX;
   }
 
-public void Elevator() {
-  talon_EH.set(talon_EH);
-}
-public void stop() {
-  wheelController.set(0.0);
-}
-  
+  /**
+   * Makes this elevator move up. This is accomplished by setting the assigned Talon's output speed.
+   * @param speed The speed to set. Value should be between -1.0 and 1.0.
+   */
+  public void elevatorUp(double speed) {
+    elevator.set(speed);
+  }
+
+  /**
+   * Stops the elevator. Sets speed to 0.
+   */
+  public void stop() {
+    elevator.set(0);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
     // setDefaultCommand(new MySpecialCommand());
   }
+
 }
