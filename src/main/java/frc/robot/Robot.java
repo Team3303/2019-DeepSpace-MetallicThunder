@@ -36,6 +36,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain; // = new DriveTrain();
   public static Claw claw; // = new Claw();
   public static BallIntake ballIntake;
+  public static Elevator elevator;
   public static boolean isOnClaw = true;
   Compressor compressor; //= new Compressor(0);
 
@@ -55,7 +56,8 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     claw = new Claw();
     ballIntake = new BallIntake();
-     compressor= new Compressor(0);
+    elevator = new Elevator();
+    compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
@@ -129,7 +131,7 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopInit() {
-     compressor.setClosedLoopControl(true); 
+    compressor.setClosedLoopControl(true); 
     // This makes sure that the autonomous stops running when
     // teleop starts running. If you want the autonomous to
     // continue until interrupted by another command, remove
