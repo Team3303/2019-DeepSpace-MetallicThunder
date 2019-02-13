@@ -95,7 +95,7 @@ public class OI {
   Button gamepadButton12 = new JoystickButton(gamepad, 12 );
   Button gamepadPOVL = new POVButton(gamepad, 270);
   Button gamepadPOVR = new POVButton(gamepad, 90);
-  Button gamepadPOVU = new POVButton(gamepad, 360);
+  Button gamepadPOVU = new POVButton(gamepad, 0);
   Button gamepadPOVD = new POVButton(gamepad, 180);
   // LEFT JOYSTICK
   public double getLeftJoystickX(){ return joystick_left.getX(); }
@@ -113,8 +113,8 @@ public class OI {
     rightJoystickButton5.whileHeld(driveInverse);
     gamepadPOVL.whenPressed(new SetToClaw());
     gamepadPOVR.whenPressed(new SetToBallIntake());
-    gamepadPOVU.whenPressed(new ElevatorUp());
-    gamepadPOVD.whenPressed(new ElevatorDown());
+    gamepadPOVU.whileHeld(new ElevatorUp());
+    gamepadPOVD.whileHeld(new ElevatorDown());
     gamepadButton5.whileHeld(new Intake());
     gamepadButton6.whileHeld(new Outtake());
   }

@@ -30,15 +30,14 @@ public class RobotMap {
   // public static int rangefinderPort = 1;
   // public static int rangefinderModule = 1;
   public static final int WHEEL_CONTROLLER_PORT = 0;
-  public static final int TALON_FL_ID = 5;
-
-  public static final int TALON_BL_ID = 6;
+  public static final int TALON_FL_ID = 1;
+  public static final int TALON_BL_ID = 2;
   public static final int TALON_FR_ID = 3;
   public static final int TALON_BR_ID = 4;
-  public static final int TALON_BIR_ID = 1;
-  public static final int TALON_BIL_ID = 2;
-  public static final int TALON_EH_ID = 666;
-  public static final int TALON_EB_ID = 777;
+  public static final int TALON_BIR_ID = 5;
+  public static final int TALON_BIL_ID = 6;
+  public static final int TALON_EH_ID = 8;
+  public static final int TALON_EB_ID = 7;
 
   public static WPI_TalonSRX talon_FL;
   public static WPI_TalonSRX talon_FR;
@@ -64,15 +63,16 @@ public class RobotMap {
     talon_EB = new WPI_TalonSRX(TALON_EB_ID);
     clawSolenoid = new DoubleSolenoid(0, 1);
     pigeon = new PigeonIMU(0);
-    encoder = new Encoder();
+    //encoder = new Encoder();
   } 
   public static void outputValues(){
     double [] ypr = new double[3];
     pigeon.getYawPitchRoll(ypr);
     SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
     // SmartDashboard.putNumber("Encoder Value", encoder.)
+    SmartDashboard.putNumber("Encoder Value", talon_EB.getSelectedSensorPosition());
     
-   /* switch(clawSolenoid.get()){
+    switch(clawSolenoid.get()){
       case kOff:
         SmartDashboard.putString("Solenoid State", "Off");
         break;
@@ -83,7 +83,7 @@ public class RobotMap {
         SmartDashboard.putString("Solenoid State", "Forward");
         break;
 
-    }*/
+    }
   }
 
 }

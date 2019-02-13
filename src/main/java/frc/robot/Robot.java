@@ -57,12 +57,12 @@ public class Robot extends TimedRobot {
   @Override
   public void robotInit() {
     RobotMap.init();
-    m_oi = new OI();
     driveTrain = new DriveTrain();
     claw = new Claw();
     ballIntake = new BallIntake();
     elevatorHatch = new Elevator(talon_EH);
     elevatorBall = new Elevator(talon_EB);
+    m_oi = new OI();
     compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
