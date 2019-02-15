@@ -15,9 +15,9 @@ public class ElevatorDown extends Command {
   @Override
   protected void initialize() {
     if (Robot.isOnClaw)
-      Robot.elevatorHatch.elevatorUp(-1);
+      Robot.elevatorHatch.set(-1);
     if (!Robot.isOnClaw)
-      Robot.elevatorBall.elevatorUp(-1);
+      Robot.elevatorBall.set(-1);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,8 +34,8 @@ public class ElevatorDown extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevatorBall.elevatorUp(0);
-    Robot.elevatorHatch.elevatorUp(0);
+    Robot.elevatorBall.set(0);
+    Robot.elevatorHatch.set(0);
   }
 
   // Called when another command which requires one or more of the same
