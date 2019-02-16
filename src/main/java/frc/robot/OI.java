@@ -95,7 +95,7 @@ public class OI {
   Button gamepadButton12 = new JoystickButton(gamepad, 12 );
   Button gamepadPOVL = new POVButton(gamepad, 270);
   Button gamepadPOVR = new POVButton(gamepad, 90);
-  Button gamepadPOVU = new POVButton(gamepad, magicmagic0);
+  Button gamepadPOVU = new POVButton(gamepad, 0);
   Button gamepadPOVD = new POVButton(gamepad, 180);
   // LEFT JOYSTICK
   public double getLeftJoystickX(){ return joystick_left.getX(); }
@@ -110,6 +110,7 @@ public class OI {
   // This constructor is to define macros for the Joystick and Gamepad buttons.
   public OI() {
     driveInverse = new DriveWithJoysticksInverted();
+    rightJoystickButton1.whileHeld(new Outtake());
     rightJoystickButton5.whileHeld(driveInverse);
     gamepadPOVL.whenPressed(new SetToClaw());
     gamepadPOVR.whenPressed(new SetToBallIntake());
