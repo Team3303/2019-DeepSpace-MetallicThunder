@@ -20,7 +20,7 @@ public class BallIn extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.ballIntake.ballIntakeOpen(-1.0);
+    Robot.ballIntake.ballIntakeOpen(-0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run
