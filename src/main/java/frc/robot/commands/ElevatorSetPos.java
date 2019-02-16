@@ -24,7 +24,11 @@ public class ElevatorSetPos extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.elevatorBall.target(targetPosition);
+    // Robot.elevatorBall.target(targetPosition);
+    if(Robot.isOnClaw)
+      Robot.elevatorHatch.target(targetPosition);
+    if(!Robot.isOnClaw)
+      Robot.elevatorBall.target(targetPosition);
   }
       
   // Called repeatedly when this Command is scheduled to run

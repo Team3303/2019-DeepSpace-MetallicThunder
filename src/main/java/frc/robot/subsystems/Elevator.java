@@ -7,30 +7,23 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import static frc.robot.RobotMap.*;
 import com.ctre.phoenix.motorcontrol.SensorCollection;
+import frc.robot.Robot;
 /**
  * Subsystem definition for thr Robot elevator.
  */
 public class Elevator extends Subsystem {
-  public enum ballLevels {
-    floor(120.32347),
-    level1(32764589.48937),
-    cargoHold(32764589.48937),
-    level2(32764589.48937),
-    level3(32764589.48937);
-    public final double value;
-    ballLevels(double description) {
-      value = description;
-    }
-  }
- public enum hatchLevels {
-    level1(120.32347),
-    level2(32764589.48937),
-    level3(32764589.48937);
-    public final double value;
-    hatchLevels(double description) {
-      value = description;
-    }
-  }
+  public int[] ballLevels = new int[] {
+    (4096 * 0),
+    (4096 * 1),
+    (4096 * 2),
+    (4096 * 3),
+    (4096 * 4),
+  };
+ public int[] hatchLevels = new int[] {
+    (4096 * 0),
+    (4096 * 1),
+    (4096 * 2),
+  };
 
   int level;
   WPI_TalonSRX elevator;
@@ -76,5 +69,20 @@ public class Elevator extends Subsystem {
 
   public void setEncoderPos(int sensorPos) {
     elevator.setSelectedSensorPosition(sensorPos);
+  }
+
+  public void setLevel(int level) {
+    this.level = level;
+  }
+
+  public int getLevelLiteral() {
+    return level;
+  }
+
+  public int getLevel() {
+    if(Robot.isOnClaw)
+      return hatchLevels[this.level];
+    else
+      return ballLevels[this.level];
   }
 }

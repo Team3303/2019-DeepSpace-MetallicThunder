@@ -113,8 +113,10 @@ public class OI {
     rightJoystickButton5.whileHeld(driveInverse);
     gamepadPOVL.whenPressed(new SetToClaw());
     gamepadPOVR.whenPressed(new SetToBallIntake());
-    gamepadPOVU.whileHeld(new ElevatorUp());
-    gamepadPOVD.whileHeld(new ElevatorDown());
+    // gamepadPOVU.whileHeld(new ElevatorUp());
+    // gamepadPOVD.whileHeld(new ElevatorDown());
+    gamepadPOVU.whenPressed(new ElevatorUp());
+    gamepadPOVD.whenPressed(new ElevatorDown());
     gamepadButton5.whileHeld(new Intake());
     gamepadButton6.whileHeld(new Outtake());
 
