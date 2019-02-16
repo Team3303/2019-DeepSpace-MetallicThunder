@@ -8,18 +8,25 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Robot;
 
 public class ElevatorSetPos extends Command {
-  public ElevatorSetPos() {
+
+  public double targetPosition;
+
+  public ElevatorSetPos(double targetPosition) {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
+    requires(Robot.elevatorBall);
+    requires(Robot.elevatorHatch);
+    this.targetPosition = targetPosition;
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
+    Robot.elevatorBall.target(targetPosition);
   }
-
+      
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {

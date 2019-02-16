@@ -5,6 +5,8 @@ import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import static frc.robot.RobotMap.*;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
 /**
  * Subsystem definition for thr Robot elevator.
  */
@@ -32,12 +34,14 @@ public class Elevator extends Subsystem {
 
   int level;
   WPI_TalonSRX elevator;
+  SensorCollection encoder;
 
   /**
    * Instantiates the Talon.
    */
-  public Elevator(WPI_TalonSRX TalonSRX){
-    this.elevator = TalonSRX;
+  public Elevator(WPI_TalonSRX talon){
+    this.elevator = talon;
+    encoder = talon_EB.getSensorCollection();
     level = 0;
   }
 
@@ -70,5 +74,7 @@ public class Elevator extends Subsystem {
     // setDefaultCommand(new MySpecialCommand());
   }
 
+  public void setEncoderPos(int sensorPos) {
+    elevator.setSelectedSensorPosition(sensorPos);
+  }
 }
-
