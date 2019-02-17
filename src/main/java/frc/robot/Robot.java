@@ -27,6 +27,9 @@ import frc.robot.OI.*;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.networktables.NetworkTableEntry;
+import edu.wpi.first.networktables.NetworkTableInstance;
+import edu.wpi.first.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -50,6 +53,12 @@ public class Robot extends TimedRobot {
   Command drive;
   SendableChooser<Command> m_chooser = new SendableChooser<>();
 
+  NetworkTableInstance networkTableInstance;
+  NetworkTable table;
+  NetworkTableEntry xEntry;
+  NetworkTableEntry yEntry;
+  NetworkTableEntry sizeEntry;
+
   /**
    * This function is run when the robot is first started up and should be
    * used for any initialization code.
@@ -72,7 +81,14 @@ public class Robot extends TimedRobot {
 
     CameraServer.getInstance().startAutomaticCapture(0);
     CameraServer.getInstance().startAutomaticCapture(1);
-    
+
+    networkTableInstance = NetworkTableInstance.getDefault();
+    networkTableInstance.startServer();
+
+    table = networkTableInstance.getTable("");
+    xEntry = table.getEntry("x");
+    yEntry = table.getEntry("y");
+    sizeEntry = table.getEntry("size");
   }
 
   /**
@@ -85,12 +101,15 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
+    SmartDashboard.putNumber("pikanamx", xEntry.getDouble(0.0));
+    SmartDashboard.putNumber("pikanamuuy", yEntry.getDouble(0.0));
+    SmartDashboard.putNumber("pikanamuhhszie", sizeEntry.getDouble(0.0));
   }
 
   /**s
    * This function is called once each time the robot enters Disabled mode.
    * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.
+   * the robot is disabled.key
    */
   @Override
   public void disabledInit() {
