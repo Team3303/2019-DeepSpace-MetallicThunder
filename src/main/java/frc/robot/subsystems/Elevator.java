@@ -13,18 +13,19 @@ import frc.robot.Robot;
  * Subsystem definition for thr Robot elevator.
  */
 public class Elevator extends Subsystem {
-  public int[] ballLevels = new int[] {
-    (4096 * 0),
-    (4096 * 1),
-    (4097 * 2),
-    (4096 * 3),
-    (4096 * 4),
+  public float[] ballLevels = new float[] {
+    (0),
+    (27.5f),
+    (55.5f),
+    (83.5f),
+    (111.5f),
   };
  public int[] hatchLevels = new int[] {
-    (4096 * 0),
-    (4096 * 1),
-    (4096 * 2),
+    (19),
+    (67),
+    (86),
   };
+  public float cir;
 
   private int level;
   WPI_TalonSRX elevator;
@@ -37,6 +38,11 @@ public class Elevator extends Subsystem {
     this.elevator = talon;
     encoder = talon_EB.getSensorCollection();
     level = 0;
+    if (Robot.isCompRobot) {
+      cir = 7.493f;
+    } else {
+      cir = 2.749f;
+    }
   }
 
   /**
@@ -52,7 +58,17 @@ public class Elevator extends Subsystem {
    * @param targetPos The position to target. Value should be a magc number.
    */
   public void target(double targetPos) {
+
     elevator.set(ControlMode.MotionMagic, targetPos);
+  }
+  public void targetLevel() {
+    int ticks;
+    if (Robot.isOnClaw) {
+      ticks = (int)((hatchLevels[level] * 4096 * 36) / (cir * 15));
+    } else {
+      ticks = (int)((ballLevels[level] * 4096 * 36) / (cir * 15));
+    }
+    elevator.set(ControlMode.MotionMagic, ticks);
   }
 
   /**
