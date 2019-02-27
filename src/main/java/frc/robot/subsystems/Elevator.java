@@ -20,10 +20,11 @@ public class Elevator extends Subsystem {
     (83.5f),
     (111.5f),
   };
- public int[] hatchLevels = new int[] {
-    (19),
-    (67),
-    (86),
+ public float[] hatchLevels = new float[] {
+    (0),
+    (19f),
+    (67f),
+    (86f),
   };
   public float cir;
 
@@ -93,7 +94,7 @@ public class Elevator extends Subsystem {
     this.checkLevel();
   }
 
-  public int getLevel() {
+  public float getLevel() {
     this.checkLevel();
     if(Robot.isOnClaw)
       return hatchLevels[this.level];
