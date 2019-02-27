@@ -8,6 +8,8 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+
 import static frc.robot.RobotMap.*;
 
 /**
@@ -21,8 +23,17 @@ public class BallIntake extends Subsystem {
     talon_BIL.follow(talon_BIR);
   }
 
+  /**
+   * Sets the value for the intake talons. Negative is 
+   * @param speed The speed to set, or direction
+   */
   public void ballIntakeOpen(double speed) {
-    talon_BIR.set(speed);
+    if(Robot.isCompRobot) {
+      talon_BIR.set(speed); // The left talon of the intake is following the right.
+    } else {
+      spark_BIR.set(speed);
+      spark_BIL.set(speed);
+    }
   }
   @Override
   public void initDefaultCommand() {

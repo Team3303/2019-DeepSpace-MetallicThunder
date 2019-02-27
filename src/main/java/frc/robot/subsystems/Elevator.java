@@ -1,4 +1,5 @@
 package frc.robot.subsystems; 
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.RobotMap;
@@ -15,7 +16,7 @@ public class Elevator extends Subsystem {
   public int[] ballLevels = new int[] {
     (4096 * 0),
     (4096 * 1),
-    (4096 * 2),
+    (4097 * 2),
     (4096 * 3),
     (4096 * 4),
   };
@@ -25,7 +26,7 @@ public class Elevator extends Subsystem {
     (4096 * 2),
   };
 
-  int level;
+  private int level;
   WPI_TalonSRX elevator;
   SensorCollection encoder;
 
@@ -73,16 +74,28 @@ public class Elevator extends Subsystem {
 
   public void setLevel(int level) {
     this.level = level;
-  }
-
-  public int getLevelLiteral() {
-    return level;
+    this.checkLevel();
   }
 
   public int getLevel() {
+    this.checkLevel();
     if(Robot.isOnClaw)
       return hatchLevels[this.level];
     else
       return ballLevels[this.level];
+  }
+
+  private void checkLevel() {
+    if(Robot.isOnClaw) {
+      if(level < 0)
+        level = 0;
+      if(level > 2)
+        level = 2;
+    } else {
+      if(level < 0)
+        level = 0;
+      if(level > 4)
+        level = 4;
+    }
   }
 }
