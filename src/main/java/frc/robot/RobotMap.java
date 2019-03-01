@@ -7,11 +7,11 @@
 
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-<<<<<<< HEAD
+
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
-=======
+
 import edu.wpi.first.wpilibj.Spark;
->>>>>>> 7b85e430f4a245290713a0cb3cefb808cae3ef91
+
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -44,15 +44,15 @@ public class RobotMap {
   public static final int TALON_EH_ID = 8;
   public static final int TALON_EB_ID = 7;
 
-<<<<<<< HEAD
+
   public static WPI_VictorSPX talon_FL;
   public static WPI_VictorSPX talon_FR;
-=======
+
   public static final int SPARK_BL_ID = 1;
 
-  public static WPI_TalonSRX talon_FL;
-  public static WPI_TalonSRX talon_FR;
->>>>>>> 7b85e430f4a245290713a0cb3cefb808cae3ef91
+  //public static WPI_TalonSRX talon_FL;
+  //public static WPI_TalonSRX talon_FR;
+
   public static WPI_TalonSRX talon_BL;
   public static WPI_TalonSRX talon_BR;
   public static WPI_TalonSRX talon_BIR;

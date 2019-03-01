@@ -17,8 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.DriveTrain;
-import frc.robot.commands.DriveWithJoysticks;
-import frc.robot.commands.DriveWithJoysticksInverted;
+import frc.robot.commands.Drive.DriveWithJoysticks;
+import frc.robot.commands.Drive.DriveWithJoysticksInverted;
 import static frc.robot.RobotMap.*;
 import static frc.robot.RobotMap.outputValues;
 import frc.robot.subsystems.Elevator.*;
