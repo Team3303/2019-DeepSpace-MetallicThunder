@@ -17,6 +17,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 import frc.robot.subsystems.DriveTrain;
+import frc.robot.commands.AutonomousFull;
+import frc.robot.commands.AutonomousSandstorm;
 import frc.robot.commands.Drive.DriveWithJoysticks;
 import frc.robot.commands.Drive.DriveWithJoysticksInverted;
 import static frc.robot.RobotMap.*;
@@ -77,6 +79,8 @@ public class Robot extends TimedRobot {
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
     SmartDashboard.putData("Auto mode", m_chooser);
+    m_chooser.setDefaultOption("Sandstormer Mode", new AutonomousSandstorm());
+    m_chooser.addObject("Full Autonomomy", new AutonomousFull());
     //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
     drive = new DriveWithJoysticks();
 
