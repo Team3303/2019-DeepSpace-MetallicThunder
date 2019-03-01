@@ -8,6 +8,7 @@
 package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.Claw.*;
 
 public class ClawInitialize extends Command {
   public ClawInitialize() {
@@ -23,6 +24,7 @@ public class ClawInitialize extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
+    
   }
 
   // Make this return true when this Command no longer needs to run execute()

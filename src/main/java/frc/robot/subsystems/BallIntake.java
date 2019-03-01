@@ -20,7 +20,7 @@ public class BallIntake extends Subsystem {
   // here. Call these from Commands.
 
   public BallIntake() {
-    talon_BIL.follow(talon_BIR);
+    // talon_BIL.follow(talon_BIR);
   }
 
   /**

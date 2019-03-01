@@ -78,9 +78,9 @@ public class Robot extends TimedRobot {
     compressor= new Compressor(0);
     // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
     // chooser.addOption("My Auto", new MyAutoCommand());
-    SmartDashboard.putData("Auto mode", m_chooser);
-    m_chooser.setDefaultOption("Sandstormer Mode", new AutonomousSandstorm());
+    m_chooser.addDefault("Sandstormer Mode", new AutonomousSandstorm());
     m_chooser.addObject("Full Autonomomy", new AutonomousFull());
+    SmartDashboard.putData("Auto mode", m_chooser);
     //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
     drive = new DriveWithJoysticks();
 
@@ -137,7 +137,8 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void autonomousInit() {
-    m_autonomousCommand = m_chooser.getSelected();
+    // m_autonomousCommand = m_chooser.getSelected();
+    m_autonomousCommand = new AutonomousSandstorm();
 
     /*
      * String autoSelected = SmartDashboard.getString("Auto Selector",
@@ -148,6 +149,7 @@ public class Robot extends TimedRobot {
 
     // schedule the autonomous command (example)
     // if (commandObject != null)
+    m_autonomousCommand.start();
   }
 
   /**

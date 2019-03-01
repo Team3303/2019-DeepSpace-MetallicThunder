@@ -48,7 +48,8 @@ public class RobotMap {
   public static WPI_VictorSPX talon_FL;
   public static WPI_VictorSPX talon_FR;
 
-  public static final int SPARK_BL_ID = 1;
+  public static final int SPARK_BIL_ID = 1;
+  public static final int SPARK_BIR_ID = 2;
 
   //public static WPI_TalonSRX talon_FL;
   //public static WPI_TalonSRX talon_FR;
@@ -77,8 +78,8 @@ public class RobotMap {
       talon_BIR = new WPI_TalonSRX(RobotMap.TALON_BIR_ID);
       talon_BIL = new WPI_TalonSRX(RobotMap.TALON_BIL_ID);
     } else {
-      spark_BIR = new Spark(SPARK_BL_ID);
-      spark_BIL = new Spark(SPARK_BL_ID);
+      spark_BIR = new Spark(RobotMap.SPARK_BIR_ID);
+      spark_BIL = new Spark(RobotMap.SPARK_BIL_ID);
     }
     talon_EH = new WPI_TalonSRX(TALON_EH_ID);
     talon_EB = new WPI_TalonSRX(TALON_EB_ID);
