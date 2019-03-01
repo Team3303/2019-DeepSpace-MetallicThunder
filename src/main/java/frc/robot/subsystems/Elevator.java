@@ -94,12 +94,16 @@ public class Elevator extends Subsystem {
     this.checkLevel();
   }
 
-  public float getLevel() {
+  public float getLevelHeight() {
     this.checkLevel();
     if(Robot.isOnClaw)
       return hatchLevels[this.level];
     else
       return ballLevels[this.level];
+  }
+
+  public int getLevel() {
+    return this.level;
   }
 
   private void checkLevel() {

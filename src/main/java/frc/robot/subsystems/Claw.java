@@ -26,6 +26,14 @@ public class Claw extends Subsystem {
     clawSolenoid.set(Value.kReverse);
   }
 
+  public void clawUp() {
+    clawUpAndDown.set(Value.kForward);
+  }
+
+  public void clawDown() {
+    clawUpAndDown.set(Value.kReverse);
+  }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.

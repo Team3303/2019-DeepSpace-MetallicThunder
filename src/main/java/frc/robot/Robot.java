@@ -39,15 +39,15 @@ import edu.wpi.first.networktables.NetworkTable;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi;// = new OI();
-  public static DriveTrain driveTrain; // = new DriveTrain();
-  public static Claw claw; // = new Claw();
+  public static OI m_oi;
+  public static DriveTrain driveTrain;
+  public static Claw claw;
   public static BallIntake ballIntake;
   public static Elevator elevatorHatch;
   public static Elevator elevatorBall;
   public static boolean isOnClaw = true;
   public static boolean isCompRobot = false;
-  Compressor compressor; //= new Compressor(0);
+  Compressor compressor;
 
 
   Command m_autonomousCommand;
@@ -102,9 +102,9 @@ public class Robot extends TimedRobot {
    */
   @Override
   public void robotPeriodic() {
-    SmartDashboard.putNumber("pikanamx", xEntry.getDouble(0.0));
-    SmartDashboard.putNumber("pikanamuuy", yEntry.getDouble(0.0));
-    SmartDashboard.putNumber("pikanamuhhszie", sizeEntry.getDouble(0.0));
+    SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
+    SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
+    SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
   }
 
   /**s
@@ -113,8 +113,7 @@ public class Robot extends TimedRobot {
    * the robot is disabled.key
    */
   @Override
-  public void disabledInit() {
-  }
+  public void disabledInit() { }
 
   @Override
   public void disabledPeriodic() {
@@ -124,9 +123,7 @@ public class Robot extends TimedRobot {
   /**
    * This autonomous (along with the chooser code above) shows how to select
    * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard. If you prefer the
-   * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-   * getString code to get the auto name from the text box below the Gyro
+   * chooser code works with the Java SmartDashboard.
    *
    * <p>You can add additional auto modes by adding additional commands to the
    * chooser code above (like the commented example) or additional comparisons

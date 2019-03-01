@@ -5,35 +5,21 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.commands.BallIntake.*;
 import frc.robot.commands.Claw.*;
 
-public class Intake extends Command {
-    BallIn ballIn;
-    ClawOpen clawOpen;
- 
-    public Intake() {
+public class SetClawUp extends Command {
+  public SetClawUp() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.ballIntake);
-    requires(Robot.claw);
-    
-    ballIn = new BallIn();
-    clawOpen = new ClawOpen();
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-  if (Robot.isOnClaw) {
-      clawOpen.start();
-    } else {
-      ballIn.start();
-    }
+    new ClawUp();
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -50,14 +36,11 @@ public class Intake extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    clawOpen.cancel();
-    ballIn.cancel();
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

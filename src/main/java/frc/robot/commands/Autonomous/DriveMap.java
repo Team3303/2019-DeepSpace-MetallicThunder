@@ -5,27 +5,19 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Autonomous;
 
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Robot;
-import frc.robot.subsystems.Elevator;
 
-public class ElevatorSetPos extends Command {
- public ElevatorSetPos() {
+public class DriveMap extends Command {
+  public DriveMap() {
     // Use requires() here to declare subsystem dependencies
-    requires(Robot.elevatorBall);
-    requires(Robot.elevatorHatch);
+    // eg. requires(chassis);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    // Robot.elevatorBall.target(targetPosition);
-    //if(Robot.isOnClaw)
-    //  Robot.elevatorHatch.target(targetPosition);
-    //if(!Robot.isOnClaw)
-    //  Robot.elevatorBall.target(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run
