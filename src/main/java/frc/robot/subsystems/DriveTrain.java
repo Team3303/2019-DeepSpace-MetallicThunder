@@ -11,6 +11,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+
 import frc.robot.RobotMap;
 import frc.robot.Robot;
 
@@ -24,8 +26,8 @@ import com.ctre.phoenix.sensors.PigeonIMU;
 public class DriveTrain extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
-  WPI_TalonSRX talon_FL;
-  WPI_TalonSRX talon_FR;
+  WPI_VictorSPX talon_FL;
+  WPI_VictorSPX talon_FR;
   WPI_TalonSRX talon_BL;
   WPI_TalonSRX talon_BR;
   PigeonIMU pigeon;

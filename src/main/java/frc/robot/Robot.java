@@ -85,7 +85,7 @@ public class Robot extends TimedRobot {
     networkTableInstance = NetworkTableInstance.getDefault();
     networkTableInstance.startServer();
 
-    table = networkTableInstance.getTable("");
+    table = networkTableInstance.getTable("Datatable");
     xEntry = table.getEntry("x");
     yEntry = table.getEntry("y");
     sizeEntry = table.getEntry("size");
@@ -104,6 +104,9 @@ public class Robot extends TimedRobot {
     SmartDashboard.putNumber("pikanamx", xEntry.getDouble(0.0));
     SmartDashboard.putNumber("pikanamuuy", yEntry.getDouble(0.0));
     SmartDashboard.putNumber("pikanamuhhszie", sizeEntry.getDouble(0.0));
+    System.out.println("isConnected:" + networkTableInstance.isConnected());
+    System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
+    System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
   }
 
   /**s
