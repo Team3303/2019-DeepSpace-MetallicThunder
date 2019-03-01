@@ -5,22 +5,27 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.subsystems.Elevator;
 
-public class BallIn extends Command {
-  public BallIn() {
+public class ElevatorSetPos extends Command {
+ public ElevatorSetPos() {
     // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    //requires(Robot.ballIntake);
+    requires(Robot.elevatorBall);
+    requires(Robot.elevatorHatch);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.ballIntake.ballIntakeOpen(-0.6);
+    // Robot.elevatorBall.target(targetPosition);
+    //if(Robot.isOnClaw)
+    //  Robot.elevatorHatch.target(targetPosition);
+    //if(!Robot.isOnClaw)
+    //  Robot.elevatorBall.target(targetPosition);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -37,13 +42,11 @@ public class BallIn extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.ballIntake.ballIntakeOpen(0);
   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
   protected void interrupted() {
-    end();
   }
 }

@@ -5,23 +5,23 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Claw;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
-
-import frc.robot.commands.ElevatorSetPos;
+import frc.robot.subsystems.Claw;
 import frc.robot.Robot;
-import frc.robot.Robot.*;
+//import static frc.robot.Robot
 
 /**
  * Add your docs here.
  */
-public class ElevatorSnapDown extends InstantCommand {
+public class ClawOpen extends InstantCommand {
   /**
    * Add your docs here.
    */
-  public ElevatorSnapDown() {
+  public ClawOpen() {
     super();
+    //requires(Robot.claw);
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -29,15 +29,7 @@ public class ElevatorSnapDown extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    if(Robot.isOnClaw)
-      Robot.elevatorHatch.setLevel(Robot.elevatorHatch.getLevel() - 1);
-    if(!Robot.isOnClaw)
-      Robot.elevatorBall.setLevel(Robot.elevatorBall.getLevel() - 1);
-    
-    //if(Robot.isOnClaw)
-    //  new ElevatorSetPos(Robot.elevatorHatch.getLevel());
-    //if(!Robot.isOnClaw)
-    //  new ElevatorSetPos(Robot.elevatorBall.getLevel());
+    Robot.claw.clawOpen();
   }
 
 }

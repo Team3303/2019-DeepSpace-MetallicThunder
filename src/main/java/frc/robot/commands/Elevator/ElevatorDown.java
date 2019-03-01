@@ -1,11 +1,11 @@
-package frc.robot.commands;
+package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class ElevatorUp extends Command {
+public class ElevatorDown extends Command {
 
-  public ElevatorUp() {
+  public ElevatorDown() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.elevatorBall);
     requires(Robot.elevatorHatch);
@@ -15,9 +15,9 @@ public class ElevatorUp extends Command {
   @Override
   protected void initialize() {
     if (Robot.isOnClaw)
-      Robot.elevatorHatch.set(0.8);
+      Robot.elevatorHatch.set(-0.65);
     if (!Robot.isOnClaw)
-      Robot.elevatorBall.set(0.8);
+      Robot.elevatorBall.set(-0.65);
   }
 
   // Called repeatedly when this Command is scheduled to run
@@ -34,8 +34,8 @@ public class ElevatorUp extends Command {
   // Called once after isFinished returns true
   @Override
   protected void end() {
-    Robot.elevatorHatch.set(0);
     Robot.elevatorBall.set(0);
+    Robot.elevatorHatch.set(0);
   }
 
   // Called when another command which requires one or more of the same

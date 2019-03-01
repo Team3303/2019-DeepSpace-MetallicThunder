@@ -1,4 +1,5 @@
 package frc.robot.subsystems; 
+
 import edu.wpi.first.wpilibj.command.Subsystem;
 import edu.wpi.first.wpilibj.Talon;
 import frc.robot.RobotMap;
@@ -12,20 +13,22 @@ import frc.robot.Robot;
  * Subsystem definition for thr Robot elevator.
  */
 public class Elevator extends Subsystem {
-  public int[] ballLevels = new int[] {
-    (4096 * 0),
-    (4096 * 1),
-    (4096 * 2),
-    (4096 * 3),
-    (4096 * 4),
+  public float[] ballLevels = new float[] {
+    (0),
+    (27.5f),
+    (55.5f),
+    (83.5f),
+    (111.5f),
   };
- public int[] hatchLevels = new int[] {
-    (4096 * 0),
-    (4096 * 1),
-    (4096 * 2),
+ public float[] hatchLevels = new float[] {
+    (0),
+    (19f),
+    (67f),
+    (86f),
   };
+  public float cir;
 
-  int level;
+  private int level;
   WPI_TalonSRX elevator;
   SensorCollection encoder;
 
@@ -36,6 +39,11 @@ public class Elevator extends Subsystem {
     this.elevator = talon;
     encoder = talon_EB.getSensorCollection();
     level = 0;
+    if (Robot.isCompRobot) {
+      cir = 7.493f;
+    } else {
+      cir = 2.749f;
+    }
   }
 
   /**
@@ -51,7 +59,17 @@ public class Elevator extends Subsystem {
    * @param targetPos The position to target. Value should be a magc number.
    */
   public void target(double targetPos) {
+
     elevator.set(ControlMode.MotionMagic, targetPos);
+  }
+  public void targetLevel() {
+    int ticks;
+    if (Robot.isOnClaw) {
+      ticks = (int)((hatchLevels[level] * 4096 * 36) / (cir * 15));
+    } else {
+      ticks = (int)((ballLevels[level] * 4096 * 36) / (cir * 15));
+    }
+    elevator.set(ControlMode.MotionMagic, ticks);
   }
 
   /**
@@ -73,16 +91,32 @@ public class Elevator extends Subsystem {
 
   public void setLevel(int level) {
     this.level = level;
+    this.checkLevel();
   }
 
-  public int getLevelLiteral() {
-    return level;
-  }
-
-  public int getLevel() {
+  public float getLevelHeight() {
+    this.checkLevel();
     if(Robot.isOnClaw)
       return hatchLevels[this.level];
     else
       return ballLevels[this.level];
+  }
+
+  public int getLevel() {
+    return this.level;
+  }
+
+  private void checkLevel() {
+    if(Robot.isOnClaw) {
+      if(level < 0)
+        level = 0;
+      if(level > 2)
+        level = 2;
+    } else {
+      if(level < 0)
+        level = 0;
+      if(level > 4)
+        level = 4;
+    }
   }
 }

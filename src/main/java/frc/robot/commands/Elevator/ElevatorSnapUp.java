@@ -5,11 +5,11 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.commands;
+package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-import frc.robot.commands.ElevatorSetPos;
+import frc.robot.commands.Elevator.ElevatorSetPos;
 import frc.robot.Robot;
 import frc.robot.Robot.*;
 
@@ -25,10 +25,14 @@ public class ElevatorSnapUp extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    if(Robot.isOnClaw)
+    if(Robot.isOnClaw) {
       Robot.elevatorHatch.setLevel(Robot.elevatorHatch.getLevel() + 1);
-    if(!Robot.isOnClaw)
+      Robot.elevatorHatch.targetLevel();
+    }
+    if(!Robot.isOnClaw) {
       Robot.elevatorBall.setLevel(Robot.elevatorBall.getLevel() + 1);
+      Robot.elevatorBall.targetLevel();
+    }
   }
 
 }

@@ -7,7 +7,11 @@
 
 package frc.robot;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+<<<<<<< HEAD
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
+=======
+import edu.wpi.first.wpilibj.Spark;
+>>>>>>> 7b85e430f4a245290713a0cb3cefb808cae3ef91
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -40,8 +44,15 @@ public class RobotMap {
   public static final int TALON_EH_ID = 8;
   public static final int TALON_EB_ID = 7;
 
+<<<<<<< HEAD
   public static WPI_VictorSPX talon_FL;
   public static WPI_VictorSPX talon_FR;
+=======
+  public static final int SPARK_BL_ID = 1;
+
+  public static WPI_TalonSRX talon_FL;
+  public static WPI_TalonSRX talon_FR;
+>>>>>>> 7b85e430f4a245290713a0cb3cefb808cae3ef91
   public static WPI_TalonSRX talon_BL;
   public static WPI_TalonSRX talon_BR;
   public static WPI_TalonSRX talon_BIR;
@@ -50,7 +61,11 @@ public class RobotMap {
   public static WPI_TalonSRX talon_BIL;
   public static PigeonIMU pigeon;
 
+  public static Spark spark_BIL;
+  public static Spark spark_BIR;
+
   public static DoubleSolenoid clawSolenoid;
+  public static DoubleSolenoid clawUpAndDown;
   public static Encoder encoder;
 
   public static void init(){
@@ -58,12 +73,19 @@ public class RobotMap {
     talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
     talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
     talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
-    talon_BIR = new WPI_TalonSRX(RobotMap.TALON_BIR_ID);
-    talon_BIL = new WPI_TalonSRX(RobotMap.TALON_BIL_ID);
+    if(Robot.isCompRobot) {
+      talon_BIR = new WPI_TalonSRX(RobotMap.TALON_BIR_ID);
+      talon_BIL = new WPI_TalonSRX(RobotMap.TALON_BIL_ID);
+    } else {
+      spark_BIR = new Spark(SPARK_BL_ID);
+      spark_BIL = new Spark(SPARK_BL_ID);
+    }
     talon_EH = new WPI_TalonSRX(TALON_EH_ID);
     talon_EB = new WPI_TalonSRX(TALON_EB_ID);
     clawSolenoid = new DoubleSolenoid(0, 1);
+    clawUpAndDown = new DoubleSolenoid(2, 3);
     pigeon = new PigeonIMU(0);
+
     //encoder = new Encoder();
   } 
   public static void outputValues(){

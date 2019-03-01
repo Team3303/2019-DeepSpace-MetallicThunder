@@ -9,6 +9,8 @@ package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.commands.BallIntake.*;
+import frc.robot.commands.Claw.*;
 
 public class Outtake extends Command {
   BallOut ballOut;
