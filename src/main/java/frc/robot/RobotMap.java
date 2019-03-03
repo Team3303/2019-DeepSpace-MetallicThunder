@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 
 import edu.wpi.first.wpilibj.Spark;
+import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -68,6 +69,8 @@ public class RobotMap {
   public static DoubleSolenoid clawSolenoid;
   public static DoubleSolenoid clawUpAndDown;
   public static Encoder encoder;
+
+  public static TalonSRX _pigeonTalon = new TalonSRX(0); /* Pigeon is ribbon cabled to this Talon */
 
   public static void init(){
     talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
