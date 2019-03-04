@@ -70,8 +70,6 @@ public class RobotMap {
   public static DoubleSolenoid clawUpAndDown;
   public static Encoder encoder;
 
-  public static TalonSRX _pigeonTalon = new TalonSRX(0); /* Pigeon is ribbon cabled to this Talon */
-
   public static void init(){
     talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
     talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);

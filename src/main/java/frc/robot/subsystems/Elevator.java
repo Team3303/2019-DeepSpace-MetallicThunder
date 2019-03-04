@@ -64,14 +64,14 @@ public class Elevator extends Subsystem {
 
     /* Set Motion Magic gains in slot0 - see documentation */
     this.elevator.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-    this.elevator.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
-    this.elevator.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
-    this.elevator.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
-    this.elevator.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
+    this.elevator.config_kF(0, Constants.kGains.kF, Constants.kTimeoutMs);
+    this.elevator.config_kP(0, Constants.kGains.kP, Constants.kTimeoutMs);
+    this.elevator.config_kI(0, Constants.kGains.kI, Constants.kTimeoutMs);
+    this.elevator.config_kD(0, Constants.kGains.kD, Constants.kTimeoutMs);
 
     /* Set acceleration and vcruise velocity - see documentation */
     this.elevator.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
-    this.configMotionAcceleration(6000, Constants.kTimeoutMs);
+    this.elevator.configMotionAcceleration(6000, Constants.kTimeoutMs);
     /* Zero the sensor */
     this.elevator.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 

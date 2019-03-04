@@ -45,7 +45,7 @@ public class Robot extends TimedRobot {
   public static DriveTrain driveTrain;
   public static Claw claw;
   public static BallIntake ballIntake;
-  public static Elevator elevatorHatch;
+  public static Elevator elevatorClaw;
   public static Elevator elevatorBall;
   public static boolean isOnClaw = true;
   public static boolean isCompRobot = false;
@@ -72,7 +72,7 @@ public class Robot extends TimedRobot {
     driveTrain = new DriveTrain();
     claw = new Claw();
     ballIntake = new BallIntake();
-    elevatorHatch = new Elevator(talon_EH);
+    elevatorClaw = new Elevator(talon_EH);
     elevatorBall = new Elevator(talon_EB);
     m_oi = new OI();
     compressor= new Compressor(0);
