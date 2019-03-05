@@ -26,8 +26,8 @@ public class ElevatorSnapDown extends InstantCommand {
   @Override
   protected void initialize() {
     if(Robot.isOnClaw) {
-      Robot.elevatorHatch.setLevel(Robot.elevatorHatch.getLevel() - 1);
-      Robot.elevatorHatch.targetLevel();
+      Robot.elevatorClaw.setLevel(Robot.elevatorClaw.getLevel() - 1);
+      Robot.elevatorClaw.targetLevel();
     }
     if(!Robot.isOnClaw) {
       Robot.elevatorBall.setLevel(Robot.elevatorBall.getLevel() - 1);
@@ -35,7 +35,7 @@ public class ElevatorSnapDown extends InstantCommand {
     }
     
     //if(Robot.isOnClaw)
-    //  new ElevatorSetPos(Robot.elevatorHatch.getLevel());
+    //  new ElevatorSetPos(Robot.elevatorClaw.getLevel());
     //if(!Robot.isOnClaw)
     //  new ElevatorSetPos(Robot.elevatorBall.getLevel());
   }

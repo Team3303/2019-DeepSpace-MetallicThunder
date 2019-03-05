@@ -15,7 +15,7 @@ public class ElevatorSetPos extends Command {
  public ElevatorSetPos() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.elevatorBall);
-    requires(Robot.elevatorHatch);
+    requires(Robot.elevatorClaw);
   }
 
   // Called just before this Command runs the first time
@@ -23,7 +23,7 @@ public class ElevatorSetPos extends Command {
   protected void initialize() {
     // Robot.elevatorBall.target(targetPosition);
     //if(Robot.isOnClaw)
-    //  Robot.elevatorHatch.target(targetPosition);
+    //  Robot.elevatorClaw.target(targetPosition);
     //if(!Robot.isOnClaw)
     //  Robot.elevatorBall.target(targetPosition);
   }

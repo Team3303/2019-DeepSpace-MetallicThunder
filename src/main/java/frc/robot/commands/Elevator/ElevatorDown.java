@@ -8,14 +8,14 @@ public class ElevatorDown extends Command {
   public ElevatorDown() {
     // Use requires() here to declare subsystem dependencies
     requires(Robot.elevatorBall);
-    requires(Robot.elevatorHatch);
+    requires(Robot.elevatorClaw);
   }
 
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
     if (Robot.isOnClaw)
-      Robot.elevatorHatch.set(-0.65);
+      Robot.elevatorClaw.set(-0.65);
     if (!Robot.isOnClaw)
       Robot.elevatorBall.set(-0.65);
   }
@@ -35,7 +35,7 @@ public class ElevatorDown extends Command {
   @Override
   protected void end() {
     Robot.elevatorBall.set(0);
-    Robot.elevatorHatch.set(0);
+    Robot.elevatorClaw.set(0);
   }
 
   // Called when another command which requires one or more of the same

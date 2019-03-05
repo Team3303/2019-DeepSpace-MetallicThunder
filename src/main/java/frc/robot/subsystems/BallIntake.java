@@ -28,13 +28,14 @@ public class BallIntake extends Subsystem {
    * @param speed The speed to set, or direction
    */
   public void ballIntakeOpen(double speed) {
-    if(Robot.isCompRobot) {
+    if (Robot.isCompRobot) {
       talon_BIR.set(speed); // The left talon of the intake is following the right.
     } else {
       spark_BIR.set(speed);
       spark_BIL.set(speed);
     }
   }
+
   @Override
   public void initDefaultCommand() {
     // Set the default command for a subsystem here.
