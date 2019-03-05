@@ -66,7 +66,7 @@ public class RobotMap {
   public static Spark spark_BIR;
 
   public static DoubleSolenoid clawSolenoid;
-  public static DoubleSolenoid clawUpAndDown;
+  public static DoubleSolenoid clawInAndOut;
   public static Encoder encoder;
 
   public static void init(){
@@ -84,7 +84,7 @@ public class RobotMap {
     talon_EH = new WPI_TalonSRX(TALON_EH_ID);
     talon_EB = new WPI_TalonSRX(TALON_EB_ID);
     clawSolenoid = new DoubleSolenoid(0, 1);
-    clawUpAndDown = new DoubleSolenoid(2, 3);
+    clawInAndOut = new DoubleSolenoid(2, 3);
     pigeon = new PigeonIMU(0);
 
     //encoder = new Encoder();

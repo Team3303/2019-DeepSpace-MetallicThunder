@@ -15,9 +15,10 @@ public class ElevatorUp extends Command {
   @Override
   protected void initialize() {
     if (Robot.isOnClaw)
-      Robot.elevatorHatch.set(0.8);
+      Robot.elevatorHatch.set(0.5);
+
     if (!Robot.isOnClaw)
-      Robot.elevatorBall.set(0.8);
+      Robot.elevatorBall.set(0.5);
   }
 
   // Called repeatedly when this Command is scheduled to run

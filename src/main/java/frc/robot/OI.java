@@ -12,10 +12,16 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.Triggers.TriggerButtonRight;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.buttons.POVButton;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Elevator.*;
 import frc.robot.commands.Drive.*;
+import frc.robot.commands.Autonomous.TimedDriveFoward;
+import frc.robot.Triggers.TriggerButtonRight;
+import frc.robot.Triggers.TriggerButtonLeft;
+
 /**
  * This class is the glue that binds the controls on the physical operator
  * interface to the commands and command groups that allow control of the robot.
@@ -98,10 +104,17 @@ public class OI {
   Button gamepadPOVR = new POVButton(gamepad, 90);
   Button gamepadPOVU = new POVButton(gamepad, 0);
   Button gamepadPOVD = new POVButton(gamepad, 180);
+  TriggerButtonRight gamepadTriggerButtonRight;
+  TriggerButtonLeft gamepadTriggerButtonLeft;
+
   // LEFT JOYSTICK
   public double getLeftJoystickX(){ return joystick_left.getX(); }
   public double getLeftJoystickY() { return joystick_left.getY(); }
   public double getLeftJoystickZ() { return joystick_left.getZ(); }
+  
+  // GAMEPAD TRIGGERS
+  public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
+  public double getGamePadLeftTrigger() { return gamepad.getRawAxis(2); }
 
   // // RIGHT JOYSTICK - GENERATED WITH A RAD BOOMER VIM MACRO USING LEFT JOYSTICK
   public double getRightJoystickX() { return joystick_right.getX(); }
@@ -110,6 +123,8 @@ public class OI {
 
   // This constructor is to define macros for the Joystick and Gamepad buttons.
   public OI() {
+    gamepadTriggerButtonRight = new TriggerButtonRight();
+    gamepadTriggerButtonLeft = new TriggerButtonLeft();
     driveInverse = new DriveWithJoysticksInverted();
     rightJoystickButton1.whileHeld(new Outtake());
     rightJoystickButton5.whileHeld(driveInverse);
@@ -121,8 +136,11 @@ public class OI {
     gamepadPOVD.whenPressed(new ElevatorDown());
     gamepadButton5.whileHeld(new Intake());
     gamepadButton6.whileHeld(new Outtake());
+    //gamepadButton1.whenPressed(new TimedDriveFoward());
 
     gamepadButton8.whenPressed(new ResetEncoder(Robot.elevatorBall));
+
+    gamepadTriggerButtonRight.whenActive(new ClawToggle());
   }
 
 }

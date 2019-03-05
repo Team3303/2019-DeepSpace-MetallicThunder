@@ -8,6 +8,10 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.Drive.DriveWithJoysticks;
+import frc.robot.commands.Claw.ClawOpen;
+import frc.robot.commands.Claw.BallDown;
+import frc.robot.commands.Autonomous.TimedDriveFoward;
 
 public class AutonomousSandstorm extends CommandGroup {
   /**
@@ -31,5 +35,9 @@ public class AutonomousSandstorm extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
     // addSequential(new );
+    addSequential(new ClawOpen());
+    addSequential(new BallDown());
+    //addSequential(new TimedDriveFoward());
+    addSequential(new DriveWithJoysticks());
   }
 }

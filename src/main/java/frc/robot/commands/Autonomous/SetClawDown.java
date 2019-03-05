@@ -10,8 +10,8 @@ package frc.robot.commands.Autonomous;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.Claw.*;
 
-public class SetClawUp extends Command {
-  public SetClawUp() {
+public class SetClawDown extends Command {
+  public SetClawDown() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
   }
@@ -19,7 +19,7 @@ public class SetClawUp extends Command {
   // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    new BallUp();
+    new BallDown();
   }
 
   // Called repeatedly when this Command is scheduled to run

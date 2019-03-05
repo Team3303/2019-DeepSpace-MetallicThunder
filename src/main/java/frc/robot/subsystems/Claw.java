@@ -26,12 +26,26 @@ public class Claw extends Subsystem {
     clawSolenoid.set(Value.kReverse);
   }
 
-  public void clawUp() {
-    clawUpAndDown.set(Value.kForward);
+  public void clawIn() {
+    clawInAndOut.set(Value.kForward);
   }
 
-  public void clawDown() {
-    clawUpAndDown.set(Value.kReverse);
+  public void clawOut() {
+    clawInAndOut.set(Value.kReverse);
+  }
+
+  public boolean clawIsOut() {
+    switch(clawInAndOut.get()) {
+      case kOff:
+       return false;
+      case kForward:
+        return false;
+      case kReverse:
+        return true;
+      default:
+        return true;
+    }
+
   }
 
   @Override

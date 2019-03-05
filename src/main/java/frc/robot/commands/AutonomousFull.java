@@ -33,6 +33,6 @@ public class AutonomousFull extends CommandGroup {
     // a CommandGroup containing them would require both the chassis and the
     // arm.
 
-    addParallel(new ClawDown());
+    addParallel(new BallDown());
   }
 }
