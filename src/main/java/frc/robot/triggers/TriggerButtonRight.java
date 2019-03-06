@@ -5,17 +5,18 @@
 /* the project.                                                               */
 /*----------------------------------------------------------------------------*/
 
-package frc.robot.Triggers;
+package frc.robot.triggers;
 
 import edu.wpi.first.wpilibj.buttons.Trigger;
+import frc.robot.OI;
 import frc.robot.Robot;
 
 /**
  * Add your docs here.
  */
-public class TriggerButtonLeft extends Trigger {
+public class TriggerButtonRight extends Trigger {
   @Override
   public boolean get() {
-    return Robot.m_oi.getGamePadLeftTrigger() > 0.5;
+    return Robot.m_oi.getGamePadRightTrigger() > 0.5;
   }
 }

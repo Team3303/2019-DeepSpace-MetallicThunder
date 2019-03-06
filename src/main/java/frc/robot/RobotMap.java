@@ -52,6 +52,8 @@ public class RobotMap {
   public static final int SPARK_BIL_ID = 1;
   public static final int SPARK_BIR_ID = 2;
 
+  public static final int TALON_BROT_ID = 2;
+
   //public static WPI_TalonSRX talon_FL;
   //public static WPI_TalonSRX talon_FR;
 
@@ -69,6 +71,8 @@ public class RobotMap {
   public static DoubleSolenoid clawSolenoid;
   public static DoubleSolenoid clawInAndOut;
   public static Encoder encoder;
+
+  public static WPI_TalonSRX ballRotator;
 
   public static void init(){
     talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
@@ -88,6 +92,7 @@ public class RobotMap {
     clawInAndOut = new DoubleSolenoid(2, 3);
     pigeon = new PigeonIMU(0);
 
+    ballRotator = new WPI_TalonSRX(RobotMap.TALON_BROT_ID);
     //encoder = new Encoder();
   } 
   public static void outputValues(){

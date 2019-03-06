@@ -11,6 +11,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 
 import edu.wpi.first.wpilibj.TimedRobot;
+
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -41,153 +42,154 @@ import edu.wpi.first.networktables.NetworkTable;
  * project.
  */
 public class Robot extends TimedRobot {
-  public static OI m_oi;
-  public static DriveTrain driveTrain;
-  public static Claw claw;
-  public static BallIntake ballIntake;
-  public static Elevator elevatorClaw;
-  public static Elevator elevatorBall;
-  public static boolean isOnClaw = true;
-  public static boolean isCompRobot = false;
-  Compressor compressor;
+	public static OI m_oi;
+	public static DriveTrain driveTrain;
+	public static Claw claw;
+	public static BallIntake ballIntake;
+	public static Elevator elevatorClaw;
+	public static Elevator elevatorBall;
+	public static boolean isOnClaw = true;
+	public static boolean isCompRobot = false;
+	Compressor compressor;
 
 
-  Command m_autonomousCommand;
-  Command drive;
-  SendableChooser<Command> m_chooser = new SendableChooser<>();
+	Command m_autonomousCommand;
+	Command drive;
+	SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-  NetworkTableInstance networkTableInstance;
-  NetworkTable table;
-  NetworkTableEntry xEntry;
-  NetworkTableEntry yEntry;
-  NetworkTableEntry sizeEntry;
+	NetworkTableInstance networkTableInstance;
+	NetworkTable table;
+	NetworkTableEntry xEntry;
+	NetworkTableEntry yEntry;
+	NetworkTableEntry sizeEntry;
 
-  /**
-   * This function is run when the robot is first started up and should be
-   * used for any initialization code.
-   */
-  @Override
-  public void robotInit() {
-    RobotMap.init();
-    driveTrain = new DriveTrain();
-    claw = new Claw();
-    ballIntake = new BallIntake();
-    elevatorClaw = new Elevator(talon_EH);
-    elevatorBall = new Elevator(talon_EB);
-    m_oi = new OI();
-    compressor= new Compressor(0);
-    // m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
-    // chooser.addOption("My Auto", new MyAutoCommand());
-    m_chooser.addDefault("Sandstormer Mode", new AutonomousSandstorm());
-    m_chooser.addObject("Full Autonomomy", new AutonomousFull());
-    SmartDashboard.putData("Auto mode", m_chooser);
-    //wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
-    drive = new DriveWithJoysticks();
+	/**
+	 * This function is run when the robot is first started up and should be
+	 * used for any initialization code.
+	 */
+	@Override
+	public void robotInit() {
+		RobotMap.init();
+		driveTrain = new DriveTrain();
+		claw = new Claw();
+		ballIntake = new BallIntake();
+		//if (isCompRobot)
+		elevatorClaw = new Elevator(talon_EH);
+		elevatorBall = new Elevator(talon_EB);
+		m_oi = new OI(); m_oi.init();
+		compressor= new Compressor(0);
+		// m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
+		// chooser.addOption("My Auto", new MyAutoCommand());
+		m_chooser.addDefault("Sandstormer Mode", new AutonomousSandstorm());
+		m_chooser.addObject("Full Autonomomy", new AutonomousFull());
+		SmartDashboard.putData("Auto mode", m_chooser);
+		//wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
+		drive = new DriveWithJoysticks();
 
-    CameraServer.getInstance().startAutomaticCapture(0);
-    CameraServer.getInstance().startAutomaticCapture(1);
+		CameraServer.getInstance().startAutomaticCapture(0);
+		CameraServer.getInstance().startAutomaticCapture(1);
 
-    networkTableInstance = NetworkTableInstance.getDefault();
-    networkTableInstance.startServer();
+		networkTableInstance = NetworkTableInstance.getDefault();
+		networkTableInstance.startServer();
 
-    table = networkTableInstance.getTable("Datatable");
-    xEntry = table.getEntry("x");
-    yEntry = table.getEntry("y");
-    sizeEntry = table.getEntry("size");
-  }
+		table = networkTableInstance.getTable("Datatable");
+		xEntry = table.getEntry("x");
+		yEntry = table.getEntry("y");
+		sizeEntry = table.getEntry("size");
+	}
 
-  /**
-   * This function is called every robot packet, no matter the mode. Use
-   * this for items like diagnostics that you want ran during disabled,
-   * autonomous, teleoperated and test.
-   *
-   * <p>This runs after the mode specific periodic functions, but before
-   * LiveWindow and SmartDashboard integrated updating.
-   */
-  @Override
-  public void robotPeriodic() {
-    SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
-    SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
-    SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
-    System.out.println("isConnected:" + networkTableInstance.isConnected());
-    System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
-  }
+	/**
+	 * This function is called every robot packet, no matter the mode. Use
+	 * this for items like diagnostics that you want ran during disabled,
+	 * autonomous, teleoperated and test.
+	 *
+	 * <p>This runs after the mode specific periodic functions, but before
+	 * LiveWindow and SmartDashboard integrated updating.
+	 */
+	@Override
+	public void robotPeriodic() {
+		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
+		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
+		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
+		System.out.println("isConnected:" + networkTableInstance.isConnected());
+		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
+	}
 
-  /**s
-   * This function is called once each time the robot enters Disabled mode.
-   * You can use it to reset any subsystem information you want to clear when
-   * the robot is disabled.key
-   */
-  @Override
-  public void disabledInit() { }
+	/**s
+	 * This function is called once each time the robot enters Disabled mode.
+	 * You can use it to reset any subsystem information you want to clear when
+	 * the robot is disabled.key
+	 */
+	@Override
+	public void disabledInit() { }
 
-  @Override
-  public void disabledPeriodic() {
-    Scheduler.getInstance().run();
-  }
+	@Override
+	public void disabledPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-  /**
-   * This autonomous (along with the chooser code above) shows how to select
-   * between different autonomous modes using the dashboard. The sendable
-   * chooser code works with the Java SmartDashboard.
-   *
-   * <p>You can add additional auto modes by adding additional commands to the
-   * chooser code above (like the commented example) or additional comparisons
-   * to the switch structure below with additional strings & commands.
-   */
-  @Override
-  public void autonomousInit() {
-    // m_autonomousCommand = m_chooser.getSelected();
-    m_autonomousCommand = new AutonomousSandstorm();
+	/**
+	 * This autonomous (along with the chooser code above) shows how to select
+	 * between different autonomous modes using the dashboard. The sendable
+	 * chooser code works with the Java SmartDashboard.
+	 *
+	 * <p>You can add additional auto modes by adding additional commands to the
+	 * chooser code above (like the commented example) or additional comparisons
+	 * to the switch structure below with additional strings & commands.
+	 */
+	@Override
+	public void autonomousInit() {
+		// m_autonomousCommand = m_chooser.getSelected();
+		m_autonomousCommand = new AutonomousSandstorm();
 
-    /*
-     * String autoSelected = SmartDashboard.getString("Auto Selector",
-     * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
-     * = new MyAutoCommand(); break; case "Default Auto": default:
-     * autonomousCommand = new ExampleCommand(); break; }
-     */
+		/*
+		 * String autoSelected = SmartDashboard.getString("Auto Selector",
+		 * "Default"); switch(autoSelected) { case "My Auto": autonomousCommand
+		 * = new MyAutoCommand(); break; case "Default Auto": default:
+		 * autonomousCommand = new ExampleCommand(); break; }
+		 */
 
-    // schedule the autonomous command (example)
-    // if (commandObject != null)
-    m_autonomousCommand.start();
-  }
+		// schedule the autonomous command (example)
+		// if (commandObject != null)
+		m_autonomousCommand.start();
+	}
 
-  /**
-   * This function is called periodically during autonomous.
-   */
-  @Override
-  public void autonomousPeriodic() {
-    Scheduler.getInstance().run();
-  }
+	/**
+	 * This function is called periodically during autonomous.
+	 */
+	@Override
+	public void autonomousPeriodic() {
+		Scheduler.getInstance().run();
+	}
 
-  @Override
-  public void teleopInit() {
-    compressor.setClosedLoopControl(true); 
-    // This makes sure that the autonomous stops running when
-    // teleop starts running. If you want the autonomous to
-    // continue until interrupted by another command, remove
-    // this line or comment it out.
-    if (m_autonomousCommand != null) {
-      m_autonomousCommand.cancel();
-    }
-    drive.start();
-  }
+	@Override
+	public void teleopInit() {
+		compressor.setClosedLoopControl(true);
+		// This makes sure that the autonomous stops running when
+		// teleop starts running. If you want the autonomous to
+		// continue until interrupted by another command, remove
+		// this line or comment it out.
+		if (m_autonomousCommand != null) {
+			m_autonomousCommand.cancel();
+		}
+		drive.start();
+	}
 
-  /**
-   * This function is called periodically during operator control.
-   */
-  @Override
-  public void teleopPeriodic() {
-    Scheduler.getInstance().run();
-    if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
-      drive.start();
-    
-    outputValues();
-  }
+	/**
+	 * This function is called periodically during operator control.
+	 */
+	@Override
+	public void teleopPeriodic() {
+		Scheduler.getInstance().run();
+		if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
+			drive.start();
 
-  /**
-   * This function is called periodically during test mode.
-   */
-  @Override
-  public void testPeriodic() { }
+		outputValues();
+	}
+
+	/**
+	 * This function is called periodically during test mode.
+	 */
+	@Override
+	public void testPeriodic() { }
 }

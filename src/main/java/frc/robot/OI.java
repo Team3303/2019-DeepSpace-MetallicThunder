@@ -12,15 +12,15 @@ import edu.wpi.first.wpilibj.Joystick.AxisType;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
-import frc.robot.Triggers.TriggerButtonRight;
+import frc.robot.triggers.TriggerButtonRight;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.buttons.Trigger;
 import frc.robot.commands.Elevator.*;
 import frc.robot.commands.Drive.*;
 import frc.robot.commands.Autonomous.TimedDriveFoward;
-import frc.robot.Triggers.TriggerButtonRight;
-import frc.robot.Triggers.TriggerButtonLeft;
+import frc.robot.triggers.TriggerButtonRight;
+import frc.robot.triggers.TriggerButtonLeft;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -122,7 +122,9 @@ public class OI {
   public double getRightJoystickZ() { return joystick_right.getZ(); }
 
   // This constructor is to define macros for the Joystick and Gamepad buttons.
-  public OI() {
+  public OI() { }
+
+  void init(){
     gamepadTriggerButtonRight = new TriggerButtonRight();
     gamepadTriggerButtonLeft = new TriggerButtonLeft();
     driveInverse = new DriveWithJoysticksInverted();
@@ -141,6 +143,7 @@ public class OI {
     gamepadButton8.whenPressed(new ResetEncoder(Robot.elevatorBall));
 
     gamepadTriggerButtonRight.whenActive(new ClawToggle());
-  }
 
+    // return Robot.m_oi.getGamePadLeftTrigger() > 0.5;
+  }
 }
