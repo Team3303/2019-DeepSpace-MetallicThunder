@@ -7,30 +7,38 @@
 
 package frc.robot.commands.Claw;
 
-import edu.wpi.first.wpilibj.command.InstantCommand;
-import frc.robot.subsystems.Claw;
-import frc.robot.Robot;
-//import static frc.robot.Robot
+import edu.wpi.first.wpilibj.command.Command;
 
-/**
- * Add your docs here.
- */
-public class ClawOpen extends InstantCommand {
-  /**
-   * Add your docs here.
-   */
-  public ClawOpen() {
-    super();
-    //requires(Robot.claw);
+public class ClawIn extends Command {
+  public ClawIn() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.claw);
   }
 
-  // Called once when the command executes
+  // Called just before this Command runs the first time
   @Override
   protected void initialize() {
-    Robot.claw.clawOpen();
   }
 
+  // Called repeatedly when this Command is scheduled to run
+  @Override
+  protected void execute() {
+  }
+
+  // Make this return true when this Command no longer needs to run execute()
+  @Override
+  protected boolean isFinished() {
+    return false;
+  }
+
+  // Called once after isFinished returns true
+  @Override
+  protected void end() {
+  }
+
+  // Called when another command which requires one or more of the same
+  // subsystems is scheduled to run
+  @Override
+  protected void interrupted() {
+  }
 }

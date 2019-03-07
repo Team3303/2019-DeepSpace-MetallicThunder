@@ -9,9 +9,7 @@ package frc.robot.commands.Elevator;
 
 import edu.wpi.first.wpilibj.command.InstantCommand;
 
-import frc.robot.commands.Elevator.ElevatorSetPos;
 import frc.robot.Robot;
-import frc.robot.Robot.*;
 
 /**
  * Add your docs here.
@@ -25,19 +23,15 @@ public class ElevatorSnapDown extends InstantCommand {
   // Called once when the command executes
   @Override
   protected void initialize() {
-    if(Robot.isOnClaw) {
-      Robot.elevatorClaw.setLevel(Robot.elevatorClaw.getLevel() - 1);
-      Robot.elevatorClaw.targetLevel();
-    }
     if(!Robot.isOnClaw) {
-      Robot.elevatorBall.setLevel(Robot.elevatorBall.getLevel() - 1);
-      Robot.elevatorBall.targetLevel();
+      Robot.elevator.setLevel(Robot.elevator.getLevel() - 1);
+      Robot.elevator.targetLevel();
     }
     
     //if(Robot.isOnClaw)
     //  new ElevatorSetPos(Robot.elevatorClaw.getLevel());
     //if(!Robot.isOnClaw)
-    //  new ElevatorSetPos(Robot.elevatorBall.getLevel());
+    //  new ElevatorSetPos(Robot.elevator.getLevel());
   }
 
 }

@@ -7,6 +7,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Counter;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.command.Subsystem;
 import frc.robot.Robot;
 
@@ -16,29 +18,51 @@ import static frc.robot.RobotMap.*;
  * Add your docs here.
  */
 public class BallIntake extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
+	DigitalInput limitSwitch = new DigitalInput(1);
+	Counter counter = new Counter(limitSwitch);
 
-  public BallIntake() {
-    // talon_BIL.follow(talon_BIR);
-  }
+	// Put methods for controlling this subsystem
+	// here. Call these from Commands.
 
-  /**
-   * Sets the value for the intake talons. Negative is 
-   * @param speed The speed to set, or direction
-   */
-  public void ballIntakeOpen(double speed) {
-    if (Robot.isCompRobot) {
-      talon_BIR.set(speed); // The left talon of the intake is following the right.
-    } else {
-      spark_BIR.set(speed);
-      spark_BIL.set(speed);
-    }
-  }
+	public BallIntake() {
+		// talon_BIL.follow(talon_BIR);
+	}
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-  }
+	/**
+	 * Sets the value for the intake talons. Negative is
+	 *
+	 * @param speed The speed to set, or direction
+	 */
+	public void ballIntakeOpen(double speed) {
+		if (Robot.isCompRobot) {
+			talon_BIR.set(speed); // The left talon of the intake is following the right.
+		} else {
+			spark_BIR.set(speed);
+			spark_BIL.set(speed);
+		}
+	}
+
+	public void transformUp() {
+		ballRotator.set(0.5);
+	}
+
+	public void transformDown() {
+		ballRotator.set(0);
+	}
+
+	public void transformEnd() {
+		ballRotator.set(0);
+	}
+
+
+	public boolean isSwitchSet() {
+		return counter.get() > 0;
+	}
+
+
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
 }

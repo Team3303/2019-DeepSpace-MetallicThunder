@@ -13,9 +13,8 @@ import frc.robot.Robot;
 import static frc.robot.Robot.ballIntake;
 import static frc.robot.RobotMap.*;
 
-
-public class BallTransformUp extends Command {
-	public BallTransformUp() {
+public class BallTransformDown extends Command {
+	public BallTransformDown() {
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 		requires(ballIntake);
@@ -29,7 +28,7 @@ public class BallTransformUp extends Command {
 	// Called repeatedly when this Command is scheduled to run
 	@Override
 	protected void execute() {
-		ballIntake.transformUp();
+		ballIntake.transformDown();
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
@@ -38,11 +37,10 @@ public class BallTransformUp extends Command {
 		return ballIntake.isSwitchSet();
 	}
 
-
 	// Called once after isFinished returns true
 	@Override
 	protected void end() {
-		ballIntake.transformEnd();
+        ballIntake.transformEnd();
 	}
 
 	// Called when another command which requires one or more of the same

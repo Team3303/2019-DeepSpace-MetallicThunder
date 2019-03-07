@@ -7,9 +7,6 @@
 
 package frc.robot;
 
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -21,12 +18,11 @@ import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.AutonomousFull;
 import frc.robot.commands.AutonomousSandstorm;
 import frc.robot.commands.Drive.DriveWithJoysticks;
-import frc.robot.commands.Drive.DriveWithJoysticksInverted;
+
 import static frc.robot.RobotMap.*;
 import static frc.robot.RobotMap.outputValues;
-import frc.robot.subsystems.Elevator.*;
+
 import frc.robot.subsystems.*;
-import frc.robot.OI.*;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
@@ -46,8 +42,7 @@ public class Robot extends TimedRobot {
 	public static DriveTrain driveTrain;
 	public static Claw claw;
 	public static BallIntake ballIntake;
-	public static Elevator elevatorClaw;
-	public static Elevator elevatorBall;
+	public static Elevator elevator;
 	public static boolean isOnClaw = true;
 	public static boolean isCompRobot = false;
 	Compressor compressor;
@@ -74,8 +69,7 @@ public class Robot extends TimedRobot {
 		claw = new Claw();
 		ballIntake = new BallIntake();
 		//if (isCompRobot)
-		elevatorClaw = new Elevator(talon_EH);
-		elevatorBall = new Elevator(talon_EB);
+		elevator = new Elevator(talon_EB);
 		m_oi = new OI(); m_oi.init();
 		compressor= new Compressor(0);
 		// m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
@@ -113,6 +107,7 @@ public class Robot extends TimedRobot {
 		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
 		System.out.println("isConnected:" + networkTableInstance.isConnected());
 		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
+		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
 	}
 
 	/**s
@@ -120,6 +115,7 @@ public class Robot extends TimedRobot {
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.key
 	 */
+
 	@Override
 	public void disabledInit() { }
 
