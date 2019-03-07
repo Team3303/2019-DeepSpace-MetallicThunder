@@ -20,13 +20,24 @@ public class OI {
 	// Additionally, by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
+	/*
+	 * Gamepad Button IDs:
+	 * 1: A
+	 * 2: B
+	 * 3: X
+	 * 4: Y
+	 * 5: Left Bumper
+	 * 6: Right Bumper
+	 * 7: Back
+	 * 8: Start
+	 */
+
 	Joystick gamepad = new Joystick(0);
 	TriggerButtonRight gamepadTriggerButtonRight;
 	TriggerButtonLeft gamepadTriggerButtonLeft;
 
 	Joystick joystick_left = new Joystick(1);
 	Joystick joystick_right = new Joystick(2);
-
 
 	Command driveInverse;
 
