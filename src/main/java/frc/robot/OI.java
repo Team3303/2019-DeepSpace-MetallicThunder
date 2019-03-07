@@ -21,9 +21,12 @@ public class OI {
 	// commands the same as any other Button.
 
 	Joystick gamepad = new Joystick(0);
+	TriggerButtonRight gamepadTriggerButtonRight;
+	TriggerButtonLeft gamepadTriggerButtonLeft;
+
 	Joystick joystick_left = new Joystick(1);
 	Joystick joystick_right = new Joystick(2);
-	Button button1 = new JoystickButton(gamepad, 1);
+
 
 	Command driveInverse;
 
@@ -69,8 +72,6 @@ public class OI {
 	Button gamepadPOVR = new POVButton(gamepad, 90);
 	Button gamepadPOVU = new POVButton(gamepad, 0);
 	Button gamepadPOVD = new POVButton(gamepad, 180);
-	TriggerButtonRight gamepadTriggerButtonRight;
-	TriggerButtonLeft gamepadTriggerButtonLeft;
 
 	// GAMEPAD TRIGGERS
 	public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
@@ -101,10 +102,11 @@ public class OI {
 		gamepadPOVD.whileHeld(new ElevatorDown());
 		gamepadButton5.whileHeld(new Intake());
 		gamepadButton6.whileHeld(new Outtake());
-		//gamepadButton1.whenPressed(new TimedDriveFoward());
 		gamepadButton8.whenPressed(new ResetEncoder(Robot.elevator));
 
 //		gamepadTriggerButtonLeft.whenActive(new );
 		gamepadTriggerButtonRight.whenActive(new ClawToggle());
+
+//		gamepadButton1.whenPressed(new TimedDriveFoward());
 	}
 }
