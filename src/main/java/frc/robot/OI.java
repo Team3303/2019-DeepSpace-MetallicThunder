@@ -16,33 +16,9 @@ import frc.robot.triggers.TriggerButtonLeft;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-	//// CREATING BUTTONS
-	// One type of button is a joystick button which is any button on a
-	//// joysick.
-	// You create one by telling it which joystick it's on and which button
-	// number it is.
-	// Joystick stick = new Joystick(port);
-	// Button button = new JoystickButton(stick, buttonNumber);
 
-	// There are a few additional built in buttons you can use. Additionally,
-	// by subclassing Button you can create custom triggers and bind those to
+	// Additionally, by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
-
-	//// TRIGGERING COMMANDS WITH BUTTONS
-	// Once you have a button, it's trivial to bind it to a button in one of
-	// three ways:
-
-	// Start the command when the button is pressed and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenPressed(new ExampleCommand());
-
-	// Run the command while the button is being held down and interrupt it once
-	// the button is released.
-	// button.whileHeld(new ExampleCommand());
-
-	// Start the command when the button is released and let it run the command
-	// until it is finished as determined by it's isFinished method.
-	// button.whenReleased(new ExampleCommand());
 
 	Joystick gamepad = new Joystick(0);
 	Joystick joystick_left = new Joystick(1);
@@ -77,7 +53,6 @@ public class OI {
 	Button rightJoystickButton11 = new JoystickButton(joystick_right, 11);
 	Button rightJoystickButton12 = new JoystickButton(joystick_right, 12);
 
-	// Gamepad
 	Button gamepadButton1 = new JoystickButton(gamepad, 1);
 	Button gamepadButton2 = new JoystickButton(gamepad, 2);
 	Button gamepadButton3 = new JoystickButton(gamepad, 3);
@@ -97,20 +72,17 @@ public class OI {
 	TriggerButtonRight gamepadTriggerButtonRight;
 	TriggerButtonLeft gamepadTriggerButtonLeft;
 
+	// GAMEPAD TRIGGERS
+	public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
+	public double getGamePadLeftTrigger() { return gamepad.getRawAxis(2); }
 	// LEFT JOYSTICK
 	public double getLeftJoystickX() { return joystick_left.getX(); }
 	public double getLeftJoystickY() { return joystick_left.getY(); }
 	public double getLeftJoystickZ() { return joystick_left.getZ(); }
-
-	// GAMEPAD TRIGGERS
-	public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
-	public double getGamePadLeftTrigger() { return gamepad.getRawAxis(2); }
-
-	// // RIGHT JOYSTICK - GENERATED WITH A RAD BOOMER VIM MACRO USING LEFT JOYSTICK
+	// RIGHT JOYSTICK
 	public double getRightJoystickX() { return joystick_right.getX(); }
 	public double getRightJoystickY() { return joystick_right.getY(); }
 	public double getRightJoystickZ() { return joystick_right.getZ(); }
-
 	// This constructor is to define macros for the Joystick and Gamepad buttons.
 	public OI() { }
 
