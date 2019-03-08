@@ -1,8 +1,6 @@
 package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Subsystem;
-import edu.wpi.first.wpilibj.Talon;
-import frc.robot.RobotMap;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
@@ -11,8 +9,6 @@ import static frc.robot.RobotMap.*;
 
 import com.ctre.phoenix.motorcontrol.SensorCollection;
 import frc.robot.Robot;
-import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.*;
 
 import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
 import frc.robot.sensors.Constants;
@@ -35,7 +31,7 @@ public class Elevator extends Subsystem {
 	 */
 	public Elevator(WPI_TalonSRX talon) {
 		this.elevator = talon;
-		encoder = talon_EB.getSensorCollection();
+		encoder = talon_EL.getSensorCollection();
 		level = 0;
 		if (Robot.isCompRobot) {
 			cir = 7.493f;

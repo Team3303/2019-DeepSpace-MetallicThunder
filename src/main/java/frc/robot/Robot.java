@@ -44,21 +44,20 @@ public class Robot extends TimedRobot {
 	public static BallIntake ballIntake;
 	public static Elevator elevator;
 	public static boolean isOnClaw = true;
-	public static boolean isCompRobot = false;
+	public static boolean isCompRobot = true;
 	Compressor compressor;
 
+	 Command m_autonomousCommand;
+	 Command drive;
+	 SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	Command m_autonomousCommand;
-	Command drive;
-	SendableChooser<Command> m_chooser = new SendableChooser<>();
+	 NetworkTableInstance networkTableInstance;
+	 NetworkTable table;
+	 NetworkTableEntry xEntry;
+	 NetworkTableEntry yEntry;
+	 NetworkTableEntry sizeEntry;
 
-	NetworkTableInstance networkTableInstance;
-	NetworkTable table;
-	NetworkTableEntry xEntry;
-	NetworkTableEntry yEntry;
-	NetworkTableEntry sizeEntry;
-
-	/**
+	 /**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
@@ -69,7 +68,7 @@ public class Robot extends TimedRobot {
 		claw = new Claw();
 		ballIntake = new BallIntake();
 		//if (isCompRobot)
-		elevator = new Elevator(talon_EB);
+		elevator = new Elevator(talon_EL);
 		m_oi = new OI(); m_oi.init();
 		compressor= new Compressor(0);
 		// m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());

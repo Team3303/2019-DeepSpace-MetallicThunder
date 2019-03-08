@@ -25,7 +25,7 @@ public class BallIntake extends Subsystem {
 	// here. Call these from Commands.
 
 	public BallIntake() {
-		// talon_BIL.follow(talon_BIR);
+		// talon_BIL.follow(talon_BI);
 	}
 
 	/**
@@ -35,7 +35,7 @@ public class BallIntake extends Subsystem {
 	 */
 	public void ballIntakeOpen(double speed) {
 		if (Robot.isCompRobot) {
-			talon_BIR.set(speed); // The left talon of the intake is following the right.
+			talon_BI.set(speed); // The left talon of the intake is following the right.
 		} else {
 			spark_BIR.set(speed);
 			spark_BIL.set(speed);
@@ -43,11 +43,11 @@ public class BallIntake extends Subsystem {
 	}
 
 	public void transformUp() {
-		ballRotator.set(0.5);
+		ballRotator.set(0.75);
 	}
 
 	public void transformDown() {
-		ballRotator.set(0);
+		ballRotator.set(-0.75);
 	}
 
 	public void transformEnd() {
