@@ -47,5 +47,6 @@ public class BallTransformDown extends Command {
 	// subsystems is scheduled to run
 	@Override
 	protected void interrupted() {
+		ballIntake.transformEnd();
 	}
 }
