@@ -4,6 +4,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
 import edu.wpi.first.wpilibj.command.Command;
+import frc.robot.commands.BallIntake.BallTransformDown;
+import frc.robot.commands.BallIntake.BallTransformUp;
 import frc.robot.triggers.TriggerButtonRight;
 import frc.robot.commands.*;
 import edu.wpi.first.wpilibj.buttons.POVButton;
@@ -114,6 +116,8 @@ public class OI {
 		gamepadButton5.whileHeld(new Intake());
 		gamepadButton6.whileHeld(new Outtake());
 		gamepadButton8.whenPressed(new ResetEncoder(Robot.elevator));
+		gamepadButton4.whileHeld(new BallTransformUp());
+		gamepadButton1.whileHeld(new BallTransformDown());
 
 //		gamepadTriggerButtonLeft.whenActive(new );
 		gamepadTriggerButtonRight.whenActive(new ClawToggle());
