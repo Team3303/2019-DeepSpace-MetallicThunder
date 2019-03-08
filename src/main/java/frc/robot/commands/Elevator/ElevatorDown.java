@@ -13,7 +13,7 @@ public class ElevatorDown extends Command {
 	// Called just before this Command runs the first time
 	@Override
 	protected void initialize() {
-		Robot.elevator.set(-0.65);
+		Robot.elevator.set(-0.5);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
