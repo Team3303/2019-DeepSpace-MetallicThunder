@@ -12,27 +12,18 @@ import frc.robot.commands.*;
 import frc.robot.commands.Claw.*;
 
 public class AutonomousFull extends CommandGroup {
-  /**
-   * Add your docs here.
-   */
-  public AutonomousFull() {
-    // Add Commands here:
-    // e.g. addSequential(new Command1());
-    // addSequential(new Command2());
-    // these will run in order.
+	/**
+	 * The autonomous command group for full autonomy during Sandstorm/Autonomous.
+	 */
+	public AutonomousFull() {
+		// addSequential(new Command1());
+		// addSequential(new Command2());
+		// these will run in order.
 
-    // To run multiple commands at the same time,
-    // use addParallel()
-    // e.g. addParallel(new Command1());
-    // addSequential(new Command2());
-    // Command1 and Command2 will run in parallel.
+		// addParallel(new Command1());
+		// addSequential(new Command2());
+		// Command1 and Command2 will run in parallel.
 
-    // A command group will require all of the subsystems that each member
-    // would require.
-    // e.g. if Command1 requires chassis, and Command2 requires arm,
-    // a CommandGroup containing them would require both the chassis and the
-    // arm.
-
-    addParallel(new BallDown());
-  }
+		addParallel(new BallDown());
+	}
 }

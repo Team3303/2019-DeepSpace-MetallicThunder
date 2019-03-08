@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -13,51 +6,49 @@ import frc.robot.commands.BallIntake.*;
 import frc.robot.commands.Claw.*;
 
 public class Intake extends Command {
-    BallIn ballIn;
-    ClawOpen clawOpen;
- 
-    public Intake() {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-    requires(Robot.ballIntake);
-    requires(Robot.claw);
-    
-    ballIn = new BallIn();
-    clawOpen = new ClawOpen();
-  }
+	BallIn ballIn;
+	ClawOpen clawOpen;
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  if (Robot.isOnClaw) {
-      clawOpen.start();
-    } else {
-      ballIn.start();
-    }
-  }
+	public Intake() {
+		requires(Robot.ballIntake);
+		requires(Robot.claw);
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-  }
+		ballIn = new BallIn();
+		clawOpen = new ClawOpen();
+	}
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+	// Called just before this Command runs the first time
+	@Override
+	protected void initialize() {
+		if (Robot.isOnClaw) {
+			clawOpen.start();
+		} else {
+			ballIn.start();
+		}
+	}
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-    clawOpen.cancel();
-    ballIn.cancel();
-  }
+	// Called repeatedly when this Command is scheduled to run
+	@Override
+	protected void execute() {
+	}
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-    end();
-  }
+	// Make this return true when this Command no longer needs to run execute()
+	@Override
+	protected boolean isFinished() {
+		return false;
+	}
+
+	// Called once after isFinished returns true
+	@Override
+	protected void end() {
+		clawOpen.cancel();
+		ballIn.cancel();
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	@Override
+	protected void interrupted() {
+		end();
+	}
 }
