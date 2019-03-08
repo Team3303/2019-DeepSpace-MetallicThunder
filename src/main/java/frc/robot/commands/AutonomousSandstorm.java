@@ -29,6 +29,11 @@ public class AutonomousSandstorm extends CommandGroup {
 		addSequential(new ClawOpen());
 		addSequential(new BallDown());
 		//addSequential(new TimedDriveFoward());
-		addSequential(new DriveWithJoysticks());
+		addParallel(new DriveWithJoysticks());
+	}
+	// TODO: Make more efficient; maybe in one line. Perhaps call in AutonomousPeriodic?
+	public void drive() {
+		 DriveWithJoysticks driver = new DriveWithJoysticks();
+		 driver.start();
 	}
 }

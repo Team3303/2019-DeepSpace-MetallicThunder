@@ -10,10 +10,12 @@ package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
 
 import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.CommandGroup;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+import frc.robot.commands.Claw.ClawOpen;
 import frc.robot.subsystems.DriveTrain;
 import frc.robot.commands.AutonomousFull;
 import frc.robot.commands.AutonomousSandstorm;
@@ -26,9 +28,9 @@ import frc.robot.subsystems.*;
 
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
-import edu.wpi.first.networktables.NetworkTableEntry;
-import edu.wpi.first.networktables.NetworkTableInstance;
-import edu.wpi.first.networktables.NetworkTable;
+//import edu.wpi.first.networktables.NetworkTableEntry;
+//import edu.wpi.first.networktables.NetworkTableInstance;
+//import edu.wpi.first.networktables.NetworkTable;
 
 /**
  * The VM is configured to automatically run this class, and to call the
@@ -47,15 +49,15 @@ public class Robot extends TimedRobot {
 	public static boolean isCompRobot = true;
 	Compressor compressor;
 
-	 Command m_autonomousCommand;
-	 Command drive;
+	 AutonomousSandstorm m_autonomousCommand;
+	 Command driver;
 	 SendableChooser<Command> m_chooser = new SendableChooser<>();
 
-	 NetworkTableInstance networkTableInstance;
-	 NetworkTable table;
-	 NetworkTableEntry xEntry;
-	 NetworkTableEntry yEntry;
-	 NetworkTableEntry sizeEntry;
+//	 NetworkTableInstance networkTableInstance;
+//	 NetworkTable table;
+//	 NetworkTableEntry xEntry;
+//	 NetworkTableEntry yEntry;
+//	 NetworkTableEntry sizeEntry;
 
 	 /**
 	 * This function is run when the robot is first started up and should be
@@ -77,18 +79,18 @@ public class Robot extends TimedRobot {
 		m_chooser.addObject("Full Autonomomy", new AutonomousFull());
 		SmartDashboard.putData("Auto mode", m_chooser);
 		//wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
-		drive = new DriveWithJoysticks();
+		driver = new DriveWithJoysticks();
 
 		CameraServer.getInstance().startAutomaticCapture(0);
 		CameraServer.getInstance().startAutomaticCapture(1);
 
-		networkTableInstance = NetworkTableInstance.getDefault();
-		networkTableInstance.startServer();
+//		networkTableInstance = NetworkTableInstance.getDefault();
+//		networkTableInstance.startServer();
 
-		table = networkTableInstance.getTable("Datatable");
-		xEntry = table.getEntry("x");
-		yEntry = table.getEntry("y");
-		sizeEntry = table.getEntry("size");
+//		table = networkTableInstance.getTable("Datatable");
+//		xEntry = table.getEntry("x");
+//		yEntry = table.getEntry("y");
+//		sizeEntry = table.getEntry("size");
 	}
 
 	/**
@@ -101,12 +103,12 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotPeriodic() {
-		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
-		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
-		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
-		System.out.println("isConnected:" + networkTableInstance.isConnected());
-		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
-		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
+//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
+//		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
+//		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
+//		System.out.println("isConnected:" + networkTableInstance.isConnected());
+//		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
+//		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
 	}
 
 	/**s
@@ -154,6 +156,7 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void autonomousPeriodic() {
+		m_autonomousCommand.drive();
 		Scheduler.getInstance().run();
 	}
 
@@ -167,7 +170,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		drive.start();
+		driver.start();
 	}
 
 	/**
@@ -176,8 +179,8 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
-			drive.start();
+		if (!driver.isRunning() && !m_oi.driveInverse.isRunning())
+			driver.start();
 
 		outputValues();
 	}
