@@ -15,18 +15,14 @@ import frc.robot.Robot;
  * Add your docs here.
  */
 public class ElevatorSnapUp extends InstantCommand {
-  /**
-   * Takes nothing.
-   */
-  public ElevatorSnapUp() { super(); }
 
   // Called once when the command executes
   @Override
   protected void initialize() {
-    if(!Robot.isOnClaw) {
+//    if(!Robot.isOnClaw) {
       Robot.elevator.setLevel(Robot.elevator.getLevel() + 1);
       Robot.elevator.targetLevel();
-    }
+//    }
   }
 
 }

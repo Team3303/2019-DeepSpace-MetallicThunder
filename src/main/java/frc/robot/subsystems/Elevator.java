@@ -1,27 +1,29 @@
 package frc.robot.subsystems;
 
-import edu.wpi.first.wpilibj.command.Subsystem;
-
 import com.ctre.phoenix.motorcontrol.ControlMode;
-import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import static frc.robot.RobotMap.*;
-
-import com.ctre.phoenix.motorcontrol.SensorCollection;
-import frc.robot.Robot;
-
-import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
-import frc.robot.sensors.Constants;
 import com.ctre.phoenix.motorcontrol.FeedbackDevice;
+import com.ctre.phoenix.motorcontrol.SensorCollection;
+import com.ctre.phoenix.motorcontrol.StatusFrameEnhanced;
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.Robot;
+import frc.robot.sensors.Constants;
+
+import static frc.robot.RobotMap.talon_EL;
 
 /**
- * Subsystem definition for thr Robot elevator.
+ * Subsystem definition for the robot elevator.
  */
 public class Elevator extends Subsystem {
-	public float[] ballLevels = new float[]{(0), (27.5f), (55.5f), (83.5f), (111.5f),};
-	public float[] hatchLevels = new float[]{(0), (19f), (67f), (86f),};
-	public float cir;
+	//	public float[] ballLevels = new float[]{(0), (27.5f), (55.5f), (83.5f), (111.5f),};
+//	public float[] hatchLevels = new float[]{(0), (19f), (67f), (86f),};
+	public float[] levels = new float[]{
+			(0),    // Floor, just sets motor to no activity.
+			(27.5f / 2), // Ball
+			(48f)
+	};
 
+	public float cir;
 	private int level;
 	WPI_TalonSRX elevator;
 	SensorCollection encoder;
@@ -57,15 +59,15 @@ public class Elevator extends Subsystem {
 		/* Set the peak and nominal outputs */
 		this.elevator.configNominalOutputForward(0, Constants.kTimeoutMs);
 		this.elevator.configNominalOutputReverse(0, Constants.kTimeoutMs);
-		this.elevator.configPeakOutputForward(1, Constants.kTimeoutMs);
-		this.elevator.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+		this.elevator.configPeakOutputForward(0.9, Constants.kTimeoutMs);
+		this.elevator.configPeakOutputReverse(-0.5, Constants.kTimeoutMs);
 
 		/* Set Motion Magic gains in slot0 - see documentation */
 		this.elevator.selectProfileSlot(Constants.kSlotIdx, Constants.kPIDLoopIdx);
-		this.elevator.config_kF(0, Constants.kGains.kF, Constants.kTimeoutMs);
-		this.elevator.config_kP(0, Constants.kGains.kP, Constants.kTimeoutMs);
-		this.elevator.config_kI(0, Constants.kGains.kI, Constants.kTimeoutMs);
-		this.elevator.config_kD(0, Constants.kGains.kD, Constants.kTimeoutMs);
+		this.elevator.config_kF(Constants.kSlotIdx, Constants.kGains.kF, Constants.kTimeoutMs);
+		this.elevator.config_kP(Constants.kSlotIdx, Constants.kGains.kP, Constants.kTimeoutMs);
+		this.elevator.config_kI(Constants.kSlotIdx, Constants.kGains.kI, Constants.kTimeoutMs);
+		this.elevator.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
 
 		/* Set acceleration and vcruise velocity - see documentation */
 		this.elevator.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
@@ -85,24 +87,22 @@ public class Elevator extends Subsystem {
 		elevator.set(speed);
 	}
 
-	/**
-	 * Makes this elevator move to target posistion. Using some Motion Magic and
-	 * magic numbers, of course.
-	 *
-	 * @param targetPos The position to target. Value should be a magc number.
-	 */
-	public void target(double targetPos) {
-
-		elevator.set(ControlMode.MotionMagic, targetPos);
+	public void targetLevel() {
+		this.checkLevel();
+		this.targetInches(this.levels[level]);
 	}
 
-	public void targetLevel() {
-		int ticks;
-		if (Robot.isOnClaw) {
-			ticks = (int) ((hatchLevels[level] * 4096 * 36) / (cir * 15));
-		} else {
-			ticks = (int) ((ballLevels[level] * 4096 * 36) / (cir * 15));
-		}
+	/**
+	 * Sets the elevator talon's target to a specific height, using the encoder.
+	 *
+	 * @param targetPos The height to set, in inches.
+	 */
+	public void targetInches(double targetPos) {
+		elevator.set(ControlMode.MotionMagic, ((targetPos * 4097f * 36f) / (cir * 15f)));
+	}
+
+	public void targetLevelOld() {
+		int ticks = (int) ((levels[level] * 4096 * 36) / (cir * 15));
 		elevator.set(ControlMode.MotionMagic, ticks);
 	}
 
@@ -123,34 +123,27 @@ public class Elevator extends Subsystem {
 		elevator.setSelectedSensorPosition(sensorPos);
 	}
 
-	public void setLevel(int level) {
-		this.level = level;
-		this.checkLevel();
-	}
-
 	public float getLevelHeight() {
 		this.checkLevel();
-		if (Robot.isOnClaw)
-			return hatchLevels[this.level];
-		else
-			return ballLevels[this.level];
+		return levels[this.level];
 	}
 
 	public int getLevel() {
 		return this.level;
 	}
 
+	public void setLevel(int level) {
+		this.level = level;
+		this.checkLevel();
+	}
+
+	/**
+	 * Checks this.level to see if it exceeds the maximum data range and is lower than 0.
+	 */
 	private void checkLevel() {
-		if (Robot.isOnClaw) {
-			if (level < 0)
-				level = 0;
-			if (level > 2)
-				level = 2;
-		} else {
-			if (level < 0)
-				level = 0;
-			if (level > 4)
-				level = 4;
-		}
-}
+		if (this.level < 0)
+			this.level = 0;
+		if (this.level > 2)
+			this.level = 2;
+	}
 }
