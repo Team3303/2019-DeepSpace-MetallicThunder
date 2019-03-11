@@ -3,15 +3,15 @@ package frc.robot;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.buttons.JoystickButton;
+import edu.wpi.first.wpilibj.buttons.POVButton;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.BallIntake.BallTransformDown;
 import frc.robot.commands.BallIntake.BallTransformUp;
-import frc.robot.triggers.TriggerButtonRight;
 import frc.robot.commands.*;
-import edu.wpi.first.wpilibj.buttons.POVButton;
+import frc.robot.commands.Drive.DriveWithJoysticksInverted;
 import frc.robot.commands.Elevator.*;
-import frc.robot.commands.Drive.*;
 import frc.robot.triggers.TriggerButtonLeft;
+import frc.robot.triggers.TriggerButtonRight;
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -86,9 +86,14 @@ public class OI {
 	Button gamepadPOVU = new POVButton(gamepad, 0);
 	Button gamepadPOVD = new POVButton(gamepad, 180);
 
+	// This constructor is to define macros for the Joystick and Gamepad buttons.
+	public OI() {
+	}
+
 	// GAMEPAD TRIGGERS
 	public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
 	public double getGamePadLeftTrigger() { return gamepad.getRawAxis(2); }
+
 	// LEFT JOYSTICK
 	public double getLeftJoystickX() { return joystick_left.getX(); }
 	public double getLeftJoystickY() { return joystick_left.getY(); }
@@ -97,8 +102,6 @@ public class OI {
 	public double getRightJoystickX() { return joystick_right.getX(); }
 	public double getRightJoystickY() { return joystick_right.getY(); }
 	public double getRightJoystickZ() { return joystick_right.getZ(); }
-	// This constructor is to define macros for the Joystick and Gamepad buttons.
-	public OI() { }
 
 	void init() {
 		gamepadTriggerButtonRight = new TriggerButtonRight();
@@ -111,6 +114,13 @@ public class OI {
 
 		gamepadPOVL.whenPressed(new SetToClaw());
 		gamepadPOVR.whenPressed(new SetToBallIntake());
+//		if(ShuffleboardConfig.elevatorModeChooser.getSelected() == false) {
+//			gamepadPOVU.whileHeld(new ElevatorUp());
+//			gamepadPOVD.whileHeld(new ElevatorDown());
+//		} else {
+//			gamepadPOVU.whenPressed(new ElevatorSnapUp());
+//			gamepadPOVD.whenPressed(new ElevatorSnapDown());
+//		}
 		gamepadPOVU.whileHeld(new ElevatorUp());
 		gamepadPOVD.whileHeld(new ElevatorDown());
 		gamepadButton5.whileHeld(new Intake());
@@ -119,9 +129,14 @@ public class OI {
 		gamepadButton4.whileHeld(new BallTransformUp());
 		gamepadButton1.whileHeld(new BallTransformDown());
 
+		rightJoystickButton11.whenPressed(new ElevatorSnapUp());
+		rightJoystickButton12.whenPressed(new ElevatorSnapDown());
+
 //		gamepadTriggerButtonLeft.whenActive(new );
 		gamepadTriggerButtonRight.whenActive(new ClawToggle());
 
 //		gamepadButton1.whenPressed(new TimedDriveFoward());
+
+		leftJoystickButton7.whenPressed(new ElevatorSetPos(11));
 	}
 }
