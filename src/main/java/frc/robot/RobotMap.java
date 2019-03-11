@@ -1,14 +1,10 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
-
-import edu.wpi.first.wpilibj.Spark;
-
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
-
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import edu.wpi.first.wpilibj.Spark;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -74,25 +70,8 @@ public class RobotMap {
 		//encoder = new Encoder();
 	}
 
-	public static void outputValues() {
-		double[] ypr = new double[3];
-		pigeon.getYawPitchRoll(ypr);
-		SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
-		// SmartDashboard.putNumber("Encoder Value", encoder.)
-		SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
-
-		switch (clawSolenoid.get()) {
-			case kOff:
-				SmartDashboard.putString("Solenoid State", "Off");
-				break;
-			case kReverse:
-				SmartDashboard.putString("Solenoid State", "Reverse");
-				break;
-			case kForward:
-				SmartDashboard.putString("Solenoid State", "Forward");
-				break;
-
-		}
+	public static void resetControllers() {
+		talon_EL.set(0);
 	}
 
 }
