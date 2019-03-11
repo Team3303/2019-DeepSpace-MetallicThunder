@@ -7,27 +7,18 @@
 
 package frc.robot;
 
-import edu.wpi.first.wpilibj.TimedRobot;
-
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.command.CommandGroup;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import frc.robot.commands.Claw.ClawOpen;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.commands.AutonomousFull;
-import frc.robot.commands.AutonomousSandstorm;
-import frc.robot.commands.Drive.DriveWithJoysticks;
-
-import static frc.robot.RobotMap.*;
-import static frc.robot.RobotMap.outputValues;
-
-import frc.robot.subsystems.*;
-
 import edu.wpi.first.cameraserver.CameraServer;
 import edu.wpi.first.wpilibj.Compressor;
+import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.command.Command;
+import edu.wpi.first.wpilibj.command.Scheduler;
+import frc.robot.commands.AutonomousSandstorm;
+import frc.robot.commands.Drive.DriveWithJoysticks;
+import frc.robot.commands.Elevator.ElevatorSetPos;
+import frc.robot.subsystems.BallIntake;
+import frc.robot.subsystems.Claw;
+import frc.robot.subsystems.DriveTrain;
+import frc.robot.subsystems.Elevator;
 //import edu.wpi.first.networktables.NetworkTableEntry;
 //import edu.wpi.first.networktables.NetworkTableInstance;
 //import edu.wpi.first.networktables.NetworkTable;
@@ -49,9 +40,8 @@ public class Robot extends TimedRobot {
 	public static boolean isCompRobot = true;
 	Compressor compressor;
 
-	 AutonomousSandstorm m_autonomousCommand;
-	 Command driver;
-	 SendableChooser<Command> m_chooser = new SendableChooser<>();
+	AutonomousSandstorm m_autonomousCommand;
+	Command drive;
 
 //	 NetworkTableInstance networkTableInstance;
 //	 NetworkTable table;
@@ -59,27 +49,21 @@ public class Robot extends TimedRobot {
 //	 NetworkTableEntry yEntry;
 //	 NetworkTableEntry sizeEntry;
 
-	 /**
+	/**
 	 * This function is run when the robot is first started up and should be
 	 * used for any initialization code.
 	 */
 	@Override
 	public void robotInit() {
+
 		RobotMap.init();
 		driveTrain = new DriveTrain();
 		claw = new Claw();
 		ballIntake = new BallIntake();
-		//if (isCompRobot)
-		elevator = new Elevator(talon_EL);
+		elevator = new Elevator(RobotMap.talon_EL);
 		m_oi = new OI(); m_oi.init();
-		compressor= new Compressor(0);
-		// m_chooser.setDefaultOption("Default Auto", new AutonomousCommand());
-		// chooser.addOption("My Auto", new MyAutoCommand());
-		m_chooser.addDefault("Sandstormer Mode", new AutonomousSandstorm());
-		m_chooser.addObject("Full Autonomomy", new AutonomousFull());
-		SmartDashboard.putData("Auto mode", m_chooser);
-		//wheel = new Wheel(RobotMap.WHEEL_CONTROLLER_PORT);
-		driver = new DriveWithJoysticks();
+		compressor = new Compressor(0);
+		drive = new DriveWithJoysticks();
 
 		CameraServer.getInstance().startAutomaticCapture(0);
 		CameraServer.getInstance().startAutomaticCapture(1);
@@ -103,22 +87,19 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotPeriodic() {
-//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
 //		System.out.println("isConnected:" + networkTableInstance.isConnected());
 //		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
-//		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
 	}
 
-	/**s
+	/**
 	 * This function is called once each time the robot enters Disabled mode.
 	 * You can use it to reset any subsystem information you want to clear when
 	 * the robot is disabled.key
 	 */
-
 	@Override
-	public void disabledInit() { }
+	public void disabledInit() {
+		RobotMap.resetControllers();
+	}
 
 	@Override
 	public void disabledPeriodic() {
@@ -170,7 +151,7 @@ public class Robot extends TimedRobot {
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
-		driver.start();
+		drive.start();
 	}
 
 	/**
@@ -179,15 +160,17 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if (!driver.isRunning() && !m_oi.driveInverse.isRunning())
-			driver.start();
+		if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
+			drive.start();
 
-		outputValues();
+		ShuffleboardConfig.outputSensorValues();
 	}
+
 
 	/**
 	 * This function is called periodically during test mode.
 	 */
 	@Override
-	public void testPeriodic() { }
+	public void testPeriodic() {
+	}
 }
