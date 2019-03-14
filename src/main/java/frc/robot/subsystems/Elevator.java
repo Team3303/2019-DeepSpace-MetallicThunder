@@ -19,8 +19,9 @@ public class Elevator extends Subsystem {
 //	public float[] hatchLevels = new float[]{(0), (19f), (67f), (86f),};
 	public float[] levels = new float[]{
 			(0),    // Floor, just sets motor to no activity.
-			(27.5f / 2), // Ball
-			(48f)
+			(6f / 2), // 1st ball level
+			(48f / 2), // 2nd ball level
+			(76 / 2) // 3rd ball level
 	};
 
 	public float cir;
