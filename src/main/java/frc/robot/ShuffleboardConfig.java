@@ -8,7 +8,9 @@ import frc.robot.commands.AutonomousSandstorm;
 
 import static frc.robot.RobotMap.clawSolenoid;
 import static frc.robot.RobotMap.talon_EL;
+
 //import edu.wpi.first.wpilibj.smartdashboard.*;
+import static frc.robot.Robot.elevator;
 
 public class ShuffleboardConfig {
 
@@ -47,8 +49,9 @@ public class ShuffleboardConfig {
 		SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
 		// SmartDashboard.putNumber("Encoder Value", encoder.)
 		SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
-		SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (7.493f * 15)));
-		SmartDashboard.putNumber("Encoder Value in Inches", ((talon_EL.getSelectedSensorPosition() * 7.493f * 15) / (4096 * 36)));
+		SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (elevator.cir * 15)));
+		SmartDashboard.putNumber("Encoder Value in Inches", ((talon_EL.getSelectedSensorPosition() * 2 * elevator.cir * 15) / (4096 * 36)));
+		SmartDashboard.putNumber("Target Elevator Level", elevator.getLevel());
 		{//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
 //		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
 //		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));

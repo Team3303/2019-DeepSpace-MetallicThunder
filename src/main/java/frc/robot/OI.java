@@ -109,11 +109,16 @@ public class OI {
 
 		driveInverse = new DriveWithJoysticksInverted();
 
-		rightJoystickButton1.whileHeld(new Outtake());
-		rightJoystickButton5.whileHeld(driveInverse);
+		if(Robot.isCompRobot) {
+			rightJoystickButton1.whileHeld(new Outtake());
+			rightJoystickButton5.whileHeld(driveInverse);
+		}
 
-		gamepadPOVL.whenPressed(new SetToClaw());
-		gamepadPOVR.whenPressed(new SetToBallIntake());
+		if(Robot.isCompRobot) {
+			gamepadPOVL.whenPressed(new SetToClaw());
+			gamepadPOVR.whenPressed(new SetToBallIntake());
+		}
+
 //		if(ShuffleboardConfig.elevatorModeChooser.getSelected() == false) {
 //			gamepadPOVU.whileHeld(new ElevatorUp());
 //			gamepadPOVD.whileHeld(new ElevatorDown());
@@ -123,17 +128,25 @@ public class OI {
 //		}
 		gamepadPOVU.whileHeld(new ElevatorUp());
 		gamepadPOVD.whileHeld(new ElevatorDown());
-		gamepadButton5.whileHeld(new Intake());
-		gamepadButton6.whileHeld(new Outtake());
+
+		if(Robot.isCompRobot) {
+			gamepadButton5.whileHeld(new Intake());
+			gamepadButton6.whileHeld(new Outtake());
+		}
 		gamepadButton8.whenPressed(new ResetEncoder(Robot.elevator));
-		gamepadButton4.whileHeld(new BallTransformUp());
-		gamepadButton1.whileHeld(new BallTransformDown());
+
+		if(Robot.isCompRobot) {
+			gamepadButton4.whileHeld(new BallTransformUp());
+			gamepadButton1.whileHeld(new BallTransformDown());
+		}
 
 		rightJoystickButton11.whenPressed(new ElevatorSnapUp());
 		rightJoystickButton12.whenPressed(new ElevatorSnapDown());
 
+		if(Robot.isCompRobot) {
 //		gamepadTriggerButtonLeft.whenActive(new );
-		gamepadTriggerButtonRight.whenActive(new ClawToggle());
+			gamepadTriggerButtonRight.whenActive(new ClawToggle());
+		}
 
 //		gamepadButton1.whenPressed(new TimedDriveFoward());
 

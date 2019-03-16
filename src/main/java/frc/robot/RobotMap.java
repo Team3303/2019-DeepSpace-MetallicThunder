@@ -1,6 +1,7 @@
 package frc.robot;
 
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.ctre.phoenix.motorcontrol.can.WPI_VictorSPX;
 import com.ctre.phoenix.sensors.PigeonIMU;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
@@ -29,8 +30,10 @@ public class RobotMap {
 	public static final int SPARK_BIR_ID = 2;
 
 
-	public static WPI_TalonSRX talon_FL;
-	public static WPI_TalonSRX talon_FR;
+	public static WPI_VictorSPX talon_FL;
+	public static WPI_VictorSPX talon_FR;
+//	public static WPI_TalonSRX talon_FL;
+//	public static WPI_TalonSRX talon_FR;
 	public static WPI_TalonSRX talon_BL;
 	public static WPI_TalonSRX talon_BR;
 	public static WPI_TalonSRX talon_BI;
@@ -49,10 +52,10 @@ public class RobotMap {
 
 	public static void init() {
 		// Motorcontrollers
-//		talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
-//		talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
-		talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
-		talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
+		talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
+		talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
+//		talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
+//		talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
 		talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
 		talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
 		talon_EL = new WPI_TalonSRX(RobotMap.TALON_EL_ID);

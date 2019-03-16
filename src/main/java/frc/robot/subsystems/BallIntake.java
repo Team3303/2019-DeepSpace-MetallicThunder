@@ -18,14 +18,15 @@ import static frc.robot.RobotMap.*;
  * Add your docs here.
  */
 public class BallIntake extends Subsystem {
-	DigitalInput limitSwitch = new DigitalInput(1);
-	Counter counter = new Counter(limitSwitch);
+//	DigitalInput limitSwitch;
+//	Counter counter = new Counter(limitSwitch);
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
 
 	public BallIntake() {
 		// talon_BIL.follow(talon_BI);
+//		limitSwitch = new DigitalInput(1);
 	}
 
 	/**
@@ -55,9 +56,9 @@ public class BallIntake extends Subsystem {
 	}
 
 
-	public boolean isSwitchSet() {
-		return counter.get() > 0;
-	}
+//	public boolean isSwitchSet() {
+//		return counter.get() > 0;
+//	}
 
 
 	@Override

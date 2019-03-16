@@ -19,9 +19,10 @@ public class Elevator extends Subsystem {
 //	public float[] hatchLevels = new float[]{(0), (19f), (67f), (86f),};
 	public float[] levels = new float[]{
 			(0),    // Floor, just sets motor to no activity.
-			(6f / 2), // 1st ball level
-			(48f / 2), // 2nd ball level
-			(76 / 2) // 3rd ball level
+			(4f), // 1st ball level
+			(20f), // 2nd ball level
+//			(32f), // 2nd ball level
+			(60f) // 3rd ball level
 	};
 
 	public float cir;
@@ -39,7 +40,7 @@ public class Elevator extends Subsystem {
 		if (Robot.isCompRobot) {
 			cir = 7.493f;
 		} else {
-			cir = 2.749f;
+			cir = 6.000f;
 		}
 
 		this.elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx,
@@ -71,7 +72,7 @@ public class Elevator extends Subsystem {
 		this.elevator.config_kD(Constants.kSlotIdx, Constants.kGains.kD, Constants.kTimeoutMs);
 
 		/* Set acceleration and vcruise velocity - see documentation */
-		this.elevator.configMotionCruiseVelocity(15000, Constants.kTimeoutMs);
+		this.elevator.configMotionCruiseVelocity(30000, Constants.kTimeoutMs);
 		this.elevator.configMotionAcceleration(6000, Constants.kTimeoutMs);
 		/* Zero the sensor */
 		this.elevator.setSelectedSensorPosition(0, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
@@ -99,7 +100,7 @@ public class Elevator extends Subsystem {
 	 * @param targetPos The height to set, in inches.
 	 */
 	public void targetInches(double targetPos) {
-		elevator.set(ControlMode.MotionMagic, ((targetPos * 4097f * 36f) / (cir * 15f)));
+		elevator.set(ControlMode.MotionMagic, (( (targetPos/2) * 4097f * 36f) / (cir * 15f)));
 	}
 
 	public void targetLevelOld() {
@@ -144,7 +145,13 @@ public class Elevator extends Subsystem {
 	private void checkLevel() {
 		if (this.level < 0)
 			this.level = 0;
-		if (this.level > 2)
-			this.level = 2;
+
+//		if(Robot.isCompRobot) {
+			if (this.level > 2)
+				this.level = 2;
+//		} else {
+//			if (this.level > 1)
+//				this.level = 1;
+//		}
 	}
 }
