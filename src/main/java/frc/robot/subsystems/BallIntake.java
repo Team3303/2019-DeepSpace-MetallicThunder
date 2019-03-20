@@ -36,7 +36,7 @@ public class BallIntake extends Subsystem {
 	 */
 	public void ballIntakeOpen(double speed) {
 		if (Robot.isCompRobot) {
-			talon_BI.set(speed); // The left talon of the intake is following the right.
+			talon_BI.set(speed);
 		} else {
 			spark_BIR.set(speed);
 			spark_BIL.set(speed);

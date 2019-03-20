@@ -52,6 +52,7 @@ public class ShuffleboardConfig {
 		SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (elevator.cir * 15)));
 		SmartDashboard.putNumber("Encoder Value in Inches", ((talon_EL.getSelectedSensorPosition() * 2 * elevator.cir * 15) / (4096 * 36)));
 		SmartDashboard.putNumber("Target Elevator Level", elevator.getLevel());
+		SmartDashboard.putNumber("Elevator Speed", talon_EL.getMotorOutputPercent());
 		{//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
 //		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
 //		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));

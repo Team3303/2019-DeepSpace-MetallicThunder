@@ -61,7 +61,7 @@ public class Elevator extends Subsystem {
 		/* Set the peak and nominal outputs */
 		this.elevator.configNominalOutputForward(0, Constants.kTimeoutMs);
 		this.elevator.configNominalOutputReverse(0, Constants.kTimeoutMs);
-		this.elevator.configPeakOutputForward(0.9, Constants.kTimeoutMs);
+		this.elevator.configPeakOutputForward(1, Constants.kTimeoutMs);
 		this.elevator.configPeakOutputReverse(-0.5, Constants.kTimeoutMs);
 
 		/* Set Motion Magic gains in slot0 - see documentation */
