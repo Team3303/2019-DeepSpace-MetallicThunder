@@ -10,8 +10,16 @@ import frc.robot.commands.BallIntake.BallTransformUp;
 import frc.robot.commands.*;
 import frc.robot.commands.Drive.DriveWithJoysticksInverted;
 import frc.robot.commands.Elevator.*;
+import frc.robot.triggers.GamepadJoystick;
 import frc.robot.triggers.TriggerButtonLeft;
 import frc.robot.triggers.TriggerButtonRight;
+import frc.robot.commands.Climber.ClimberDeployBack;
+import frc.robot.commands.Climber.ClimberDeployFront;
+import frc.robot.commands.Climber.ClimberRetractBack;
+import frc.robot.commands.Climber.ClimberRetractFront;
+
+
+
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -34,7 +42,7 @@ public class OI {
 	 * 8: Start
 	 */
 
-	Joystick gamepad = new Joystick(0);
+	public Joystick gamepad = new Joystick(0);
 	TriggerButtonRight gamepadTriggerButtonRight;
 	TriggerButtonLeft gamepadTriggerButtonLeft;
 
@@ -68,6 +76,10 @@ public class OI {
 	Button rightJoystickButton10 = new JoystickButton(joystick_right, 10);
 	Button rightJoystickButton11 = new JoystickButton(joystick_right, 11);
 	Button rightJoystickButton12 = new JoystickButton(joystick_right, 12);
+	Button rightJoystickButtonPOVU = new POVButton(joystick_right, 0);
+	Button leftJoystickButtonPOVU = new POVButton(joystick_left, 0);
+	Button rightJoystickButtonPOVD = new POVButton(joystick_right, 180);
+	Button leftJoystickButtonPOVD = new POVButton(joystick_left, 180);
 
 	Button gamepadButton1 = new JoystickButton(gamepad, 1);
 	Button gamepadButton2 = new JoystickButton(gamepad, 2);
@@ -85,6 +97,7 @@ public class OI {
 	Button gamepadPOVR = new POVButton(gamepad, 90);
 	Button gamepadPOVU = new POVButton(gamepad, 0);
 	Button gamepadPOVD = new POVButton(gamepad, 180);
+	GamepadJoystick gamepadIsUsingLeftJoystick = new GamepadJoystick(1);
 
 	// This constructor is to define macros for the Joystick and Gamepad buttons.
 	public OI() {
@@ -102,8 +115,12 @@ public class OI {
 	public double getRightJoystickX() { return joystick_right.getX(); }
 	public double getRightJoystickY() { return joystick_right.getY(); }
 	public double getRightJoystickZ() { return joystick_right.getZ(); }
+	// GAMEPAD JOYSTICKS
+	public double getGamePadLeftJoystickY() { return gamepad.getRawAxis(1); }
+	public double getGamePadRIghtJoystickY() { return gamepad.getRawAxis(5); }
 
 	void init() {
+
 		gamepadTriggerButtonRight = new TriggerButtonRight();
 		gamepadTriggerButtonLeft = new TriggerButtonLeft();
 
@@ -126,8 +143,8 @@ public class OI {
 //			gamepadPOVU.whenPressed(new ElevatorSnapUp());
 //			gamepadPOVD.whenPressed(new ElevatorSnapDown());
 //		}
-		gamepadPOVU.whileHeld(new ElevatorUp());
-		gamepadPOVD.whileHeld(new ElevatorDown());
+		//gamepadPOVU.whileHeld(new ElevatorUp());
+		//gamepadPOVD.whileHeld(new ElevatorDown());
 
 		if(Robot.isCompRobot) {
 			gamepadButton5.whileHeld(new Intake());
@@ -140,8 +157,8 @@ public class OI {
 			gamepadButton1.whileHeld(new BallTransformDown());
 		}
 
-		rightJoystickButton11.whenPressed(new ElevatorSnapUp());
-		rightJoystickButton12.whenPressed(new ElevatorSnapDown());
+		gamepadPOVU.whenPressed(new ElevatorSnapUp());
+		gamepadPOVD.whenPressed(new ElevatorSnapDown());
 
 		if(Robot.isCompRobot) {
 //		gamepadTriggerButtonLeft.whenActive(new );
@@ -151,5 +168,12 @@ public class OI {
 //		gamepadButton1.whenPressed(new TimedDriveFoward());
 
 		leftJoystickButton7.whenPressed(new ElevatorSetPos(11));
+
+		//Climber
+		leftJoystickButtonPOVU.whileHeld(new ClimberDeployBack());
+		rightJoystickButtonPOVU.whileHeld(new ClimberDeployFront());
+		leftJoystickButtonPOVD.whileHeld(new ClimberRetractBack());
+		rightJoystickButtonPOVD.whileHeld(new ClimberRetractFront());
 	}
+	
 }
