@@ -106,6 +106,7 @@ public class Elevator extends Subsystem {
 	public void targetLevelOld() {
 		int ticks = (int) ((levels[level] * 4096 * 36) / (cir * 15));
 		elevator.set(ControlMode.MotionMagic, ticks);
+
 	}
 
 	/**
