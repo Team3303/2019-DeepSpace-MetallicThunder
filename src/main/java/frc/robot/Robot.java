@@ -64,10 +64,11 @@ public class Robot extends TimedRobot {
 		claw = new Claw();
 		ballIntake = new BallIntake();
 		elevator = new Elevator(RobotMap.talon_EL);
+		climber = new Climber();
 		m_oi = new OI(); m_oi.init();
 		compressor = new Compressor(0);
 		drive = new DriveWithJoysticks();
-		climber = new Climber();
+		
 
 		CameraServer.getInstance().startAutomaticCapture(0);
 		CameraServer.getInstance().startAutomaticCapture(1);
@@ -156,7 +157,6 @@ public class Robot extends TimedRobot {
 			m_autonomousCommand.cancel();
 		}
 		drive.start();
-		climberDeploy.start();
 	}
 
 	/**

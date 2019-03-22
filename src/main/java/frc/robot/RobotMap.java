@@ -31,7 +31,7 @@ public class RobotMap {
 	public static final int SPARK_BIL_ID = 3;
 	public static final int SPARK_BIR_ID = 2;
 	public static final int TALON_CFR_ID = 1;
-	public static final int TALON_CFL_ID = 7;
+	public static final int TALON_CFL_ID = 10;
 	public static final int TALON_CBL_ID = 8;
 	public static final int TALON_CBR_ID = 9;
 
