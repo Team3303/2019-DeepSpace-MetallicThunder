@@ -27,7 +27,7 @@ public class Climber extends Subsystem {
   }
   public void climberBackSet (double speed) {
     talon_CBL.set(speed);
-    talon_CBR.set(speed);
+    talon_CBR.set(-speed);
   }
 
   
