@@ -34,12 +34,13 @@ public class RobotMap {
 	public static final int TALON_CFL_ID = 8;
 	public static final int TALON_CBL_ID = 6;
 	public static final int TALON_CBR_ID = 5;
+	public static final int TALON_CD_ID = 9;
 
 
-	public static WPI_VictorSPX talon_FL;
-	public static WPI_VictorSPX talon_FR;
-//	public static WPI_TalonSRX talon_FL;
-//	public static WPI_TalonSRX talon_FR;
+//	public static WPI_VictorSPX talon_FL;
+//	public static WPI_VictorSPX talon_FR;
+	public static WPI_TalonSRX talon_FL;
+	public static WPI_TalonSRX talon_FR;
 	public static WPI_TalonSRX talon_BL;
 	public static WPI_TalonSRX talon_BR;
 	public static WPI_TalonSRX talon_BI;
@@ -52,6 +53,7 @@ public class RobotMap {
 	public static Talon talon_CFR;
 	public static WPI_TalonSRX talon_CBL;
 	public static WPI_TalonSRX talon_CBR;
+	public static WPI_TalonSRX talon_CD;
 
 	public static DoubleSolenoid clawSolenoid;
 	public static DoubleSolenoid clawInAndOut;
@@ -62,10 +64,10 @@ public class RobotMap {
 
 	public static void init() {
 		// Motorcontrollers
-		talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
-		talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
-//		talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
-//		talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
+	//	talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
+	//	talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
+		talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
+		talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
 		talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
 		talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
 		talon_EL = new WPI_TalonSRX(RobotMap.TALON_EL_ID);
@@ -74,6 +76,8 @@ public class RobotMap {
 		talon_CFL = new WPI_TalonSRX(RobotMap.TALON_CFL_ID);
 		talon_CBR = new WPI_TalonSRX(RobotMap.TALON_CBR_ID);
 		talon_CBL = new WPI_TalonSRX(RobotMap.TALON_CBL_ID);
+		talon_CD = new WPI_TalonSRX(RobotMap.TALON_CD_ID);
+
 
 		if (Robot.isCompRobot) {
 			talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
