@@ -75,7 +75,6 @@ public class RobotMap {
 		talon_CBR = new WPI_TalonSRX(RobotMap.TALON_CBR_ID);
 		talon_CBL = new WPI_TalonSRX(RobotMap.TALON_CBL_ID);
 
-
 		if (Robot.isCompRobot) {
 			talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
 		} else {
