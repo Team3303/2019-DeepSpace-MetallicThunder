@@ -165,7 +165,7 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
-		if (!drive.isRunning() && !m_oi.driveInverse.isRunning())
+		if (!drive.isRunning() && !m_oi.driveInverse.isRunning() && !m_oi.driveStraight.isRunning())
 			drive.start();
 
 		ShuffleboardConfig.outputSensorValues();

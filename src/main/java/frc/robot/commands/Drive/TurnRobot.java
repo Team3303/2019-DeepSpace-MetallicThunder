@@ -9,40 +9,51 @@ package frc.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import frc.robot.RobotMap;
+
+import static frc.robot.RobotMap.*;
 
 public class TurnRobot extends Command {
-  public double leftspeed, rightspeed;
-  public TurnRobot(double leftspeed, double rightspeed) {
-    // Use requires() here to declare subsystem dependencies
-    // eg. requires(chassis);
-  }
+	double targetAngle;
 
-  // Called just before this Command runs the first time
-  @Override
-  protected void initialize() {
-  }
+	public TurnRobot(double angle) {
+		this.targetAngle = angle;
+	}
 
-  // Called repeatedly when this Command is scheduled to run
-  @Override
-  protected void execute() {
-    Robot.driveTrain.tankDrive(leftspeed, rightspeed);
-   
-  }
+	@Override
+	protected void initialize() {
+//		RobotMap.pigeon.setYawToCompass();
+		RobotMap.pigeon.setYaw(0d);
 
-  // Make this return true when this Command no longer needs to run execute()
-  @Override
-  protected boolean isFinished() {
-    return false;
-  }
+		talon_BL.setInverted(true);
+		talon_FL.setInverted(true);
+	}
 
-  // Called once after isFinished returns true
-  @Override
-  protected void end() {
-  }
+	@Override
+	protected void execute() {
+		Robot.driveTrain.turn(this.targetAngle);
+	}
 
-  // Called when another command which requires one or more of the same
-  // subsystems is scheduled to run
-  @Override
-  protected void interrupted() {
-  }
+	@Override
+	protected boolean isFinished() {
+		double[] values = new double[3];
+		pigeon.getYawPitchRoll(values);
+		if(values[0] > targetAngle+1d || values[0] < targetAngle-1d)
+			return false;
+		else
+			return true;
+
+	}
+
+	@Override
+	protected void end() {
+		talon_BL.setInverted(false);
+		talon_FL.setInverted(false);
+	}
+
+	@Override
+	protected void interrupted() {
+		talon_BL.setInverted(false);
+		talon_FL.setInverted(false);
+	}
 }

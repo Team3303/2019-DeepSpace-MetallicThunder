@@ -8,7 +8,9 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.BallIntake.BallTransformDown;
 import frc.robot.commands.BallIntake.BallTransformUp;
 import frc.robot.commands.*;
+import frc.robot.commands.Drive.DriveStraight;
 import frc.robot.commands.Drive.DriveWithJoysticksInverted;
+import frc.robot.commands.Drive.TurnRobot;
 import frc.robot.commands.Elevator.*;
 import frc.robot.triggers.GamepadJoystick;
 import frc.robot.triggers.TriggerButtonLeft;
@@ -50,6 +52,7 @@ public class OI {
 	Joystick joystick_right = new Joystick(2);
 
 	Command driveInverse;
+	Command driveStraight;
 
 	Button leftJoystickButton1 = new JoystickButton(joystick_left, 1);
 	Button leftJoystickButton2 = new JoystickButton(joystick_left, 2);
@@ -125,6 +128,7 @@ public class OI {
 		gamepadTriggerButtonLeft = new TriggerButtonLeft();
 
 		driveInverse = new DriveWithJoysticksInverted();
+		driveStraight = new DriveStraight();
 
 		if(Robot.isCompRobot) {
 			rightJoystickButton1.whileHeld(new Outtake());
@@ -161,13 +165,15 @@ public class OI {
 		gamepadPOVD.whenPressed(new ElevatorSnapDown());
 
 		if(Robot.isCompRobot) {
-//		gamepadTriggerButtonLeft.whenActive(new );
 			gamepadTriggerButtonRight.whenActive(new ClawToggle());
 		}
 
 //		gamepadButton1.whenPressed(new TimedDriveFoward());
 
 		leftJoystickButton7.whenPressed(new ElevatorSetPos(11));
+
+		rightJoystickButton10.whileHeld(driveStraight);
+		rightJoystickButton11.whenPressed(new TurnRobot(90));
 
 		//Climber
 		leftJoystickButtonPOVU.whileHeld(new ClimberDeployBack());
