@@ -9,15 +9,16 @@ package frc.robot.commands.Drive;
 
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
+import static frc.robot.Robot.climberDrive;
 
-public class DriveWithJoysticksInverted extends Command {
+public class DriveWithClimber extends Command {
 
   float leftDrive, rightDrive;
 
-  public DriveWithJoysticksInverted() {
+  public DriveWithClimber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
-    requires(Robot.driveTrain);
+    requires(Robot.climberDrive);
   }
 
   // Called just before this Command runs the first time
@@ -27,7 +28,7 @@ public class DriveWithJoysticksInverted extends Command {
   // Called repeatedly when this Command is scheduled to run
   @Override
   protected void execute() {
-    Robot.driveTrain.tankDrive(Robot.m_oi.getLeftJoystickY(), Robot.m_oi.getRightJoystickY());
+    climberDrive.driveClimber(Robot.m_oi.getLeftJoystickY());
   }
 
   // Make this return true when this Command no longer needs to run execute()
@@ -38,10 +39,14 @@ public class DriveWithJoysticksInverted extends Command {
 
   // Called once after isFinished returns true
   @Override
-  protected void end() { }
+  protected void end() {
+    climberDrive.driveClimber(0);
+   }
 
   // Called when another command which requires one or more of the same
   // subsystems is scheduled to run
   @Override
-  protected void interrupted() { }
+  protected void interrupted() {
+    end();
+   }
 }

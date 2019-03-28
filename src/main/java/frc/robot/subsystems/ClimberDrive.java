@@ -7,7 +7,10 @@
 
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+
 import edu.wpi.first.wpilibj.command.Subsystem;
+import frc.robot.RobotMap;
 
 /**
  * Add your docs here.
@@ -15,6 +18,15 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 public class ClimberDrive extends Subsystem {
   // Put methods for controlling this subsystem
   // here. Call these from Commands.
+  WPI_TalonSRX talon_CD;
+
+  public ClimberDrive() {
+    talon_CD = RobotMap.talon_CD;
+  }
+
+  public void driveClimber(double speed) {
+    talon_CD.set(speed);
+  }
 
   @Override
   public void initDefaultCommand() {
