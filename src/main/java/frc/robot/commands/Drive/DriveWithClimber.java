@@ -10,11 +10,11 @@ package frc.robot.commands.Drive;
 import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
-public class DriveWithJoysticksInverted extends Command {
+public class DriveWithClimber extends Command {
 
   float leftDrive, rightDrive;
 
-  public DriveWithJoysticksInverted() {
+  public DriveWithClimber() {
     // Use requires() here to declare subsystem dependencies
     // eg. requires(chassis);
     requires(Robot.driveTrain);
