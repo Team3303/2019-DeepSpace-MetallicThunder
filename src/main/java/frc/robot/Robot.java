@@ -38,7 +38,7 @@ public class Robot extends TimedRobot {
 	public static BallIntake ballIntake;
 	public static Elevator elevator;
 	public static boolean isOnClaw = true;
-	public static boolean isCompRobot = false;
+	public static boolean isCompRobot = true;
 	public static Climber climber;
 	Compressor compressor;
 

@@ -23,10 +23,10 @@ import frc.robot.sensors.Constants;
 public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-	WPI_VictorSPX talon_FL;
-	WPI_VictorSPX talon_FR;
-	//	WPI_TalonSRX talon_FL;
-//	WPI_TalonSRX talon_FR;
+//	WPI_VictorSPX talon_FL;
+//	WPI_VictorSPX talon_FR;
+	WPI_TalonSRX talon_FL;
+	WPI_TalonSRX talon_FR;
 	WPI_TalonSRX talon_BL;
 	WPI_TalonSRX talon_BR;
 	PigeonIMU pigeon;

@@ -22,17 +22,17 @@ public class RobotMap {
 	public static final int TALON_FR_ID = 3;
 	public static final int TALON_BR_ID = 4;
 	public static final int TALON_BI_ID = 5;
-	public static final int TALON_EL_ID = 7;
-	public static final int TALON_BROT_ID = 6;
+	public static final int TALON_EL_ID = 6;
+	public static final int TALON_BROT_ID = 7;
 
 //	public static WPI_VictorSPX talon_FL;
 //	public static WPI_VictorSPX talon_FR;
 
-	public static final int TALON_CFR_ID = 1;
-	public static final int TALON_CFL_ID = 8;
-	public static final int TALON_CBL_ID = 9;
-	public static final int TALON_CBR_ID = 10;
-	public static final int TALON_CD_ID = 9;
+	public static final int TALON_CFR_ID = 8;
+	public static final int TALON_CFL_ID = 9;
+	public static final int TALON_CBL_ID = 10;
+	public static final int TALON_CBR_ID = 11;
+	public static final int TALON_CD_ID = 12;
 
 //	public static WPI_VictorSPX talon_FL;
 //	public static WPI_VictorSPX talon_FR;
@@ -76,12 +76,7 @@ public class RobotMap {
 		talon_CD = new WPI_TalonSRX(RobotMap.TALON_CD_ID);
 
 
-		if (Robot.isCompRobot) {
-			talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
-		} else {
-			spark_BIR = new Spark(RobotMap.SPARK_BIR_ID);
-			spark_BIL = new Spark(RobotMap.SPARK_BIL_ID);
-		}
+		talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
 
 		// Solenoids
 		clawSolenoid = new DoubleSolenoid(0, 1);
