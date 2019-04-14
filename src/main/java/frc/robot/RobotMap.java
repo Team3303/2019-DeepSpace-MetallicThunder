@@ -30,8 +30,9 @@ public class RobotMap {
 
 	public static final int TALON_CFR_ID = 8;
 	public static final int TALON_CFL_ID = 9;
-	public static final int TALON_CBL_ID = 10;
-	public static final int TALON_CBR_ID = 11;
+//	public static final int TALON_CBL_ID = 10;
+//	public static final int TALON_CBR_ID = 11;
+	public static final int TALON_CB_ID = 10;
 	public static final int TALON_CD_ID = 12;
 
 //	public static WPI_VictorSPX talon_FL;
@@ -47,9 +48,10 @@ public class RobotMap {
 	public static Spark spark_BIL;
 	public static Spark spark_BIR;
 	public static WPI_TalonSRX talon_CFL;
-	public static Talon talon_CFR;
-	public static WPI_TalonSRX talon_CBL;
-	public static WPI_TalonSRX talon_CBR;
+	public static WPI_TalonSRX talon_CFR;
+//	public static WPI_TalonSRX talon_CBL;
+//	public static WPI_TalonSRX talon_CBR;
+	public static WPI_TalonSRX talon_CB;
 	public static WPI_TalonSRX talon_CD;
 
 	public static DoubleSolenoid clawSolenoid;
@@ -69,12 +71,12 @@ public class RobotMap {
 		talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
 		talon_EL = new WPI_TalonSRX(RobotMap.TALON_EL_ID);
 		ballRotator = new WPI_TalonSRX(RobotMap.TALON_BROT_ID);
-		talon_CFR = new Talon(RobotMap.TALON_CFR_ID);
+		talon_CFR = new WPI_TalonSRX(RobotMap.TALON_CFR_ID);
 		talon_CFL = new WPI_TalonSRX(RobotMap.TALON_CFL_ID);
-		talon_CBR = new WPI_TalonSRX(RobotMap.TALON_CBR_ID);
-		talon_CBL = new WPI_TalonSRX(RobotMap.TALON_CBL_ID);
+		talon_CB = new WPI_TalonSRX(RobotMap.TALON_CB_ID);
+//		talon_CBR = new WPI_TalonSRX(RobotMap.TALON_CBR_ID);
+//		talon_CBL = new WPI_TalonSRX(RobotMap.TALON_CBL_ID);
 		talon_CD = new WPI_TalonSRX(RobotMap.TALON_CD_ID);
-
 
 		talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
 

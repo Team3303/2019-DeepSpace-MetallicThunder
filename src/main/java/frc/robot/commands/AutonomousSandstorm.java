@@ -8,6 +8,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
+import frc.robot.commands.Claw.ClawClose;
 import frc.robot.commands.Drive.DriveWithJoysticks;
 import frc.robot.commands.Claw.ClawOpen;
 import frc.robot.commands.Claw.BallDown;
@@ -26,9 +27,6 @@ public class AutonomousSandstorm extends CommandGroup {
 		// addSequential(new Command2());
 		// Command1 and Command2 will run in parallel.
 
-		addSequential(new ClawOpen());
-		addSequential(new BallDown());
-		//addSequential(new TimedDriveFoward());
 		addParallel(new DriveWithJoysticks());
 	}
 	// TODO: Make more efficient; maybe in one line. Perhaps call in AutonomousPeriodic?

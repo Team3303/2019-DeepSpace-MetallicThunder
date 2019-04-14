@@ -8,20 +8,15 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.commands.BallIntake.BallTransformDown;
 import frc.robot.commands.BallIntake.BallTransformUp;
 import frc.robot.commands.*;
+import frc.robot.commands.Climber.*;
 import frc.robot.commands.Drive.DriveStraight;
+import frc.robot.commands.Drive.DriveWithClimber;
 import frc.robot.commands.Drive.DriveWithJoysticksInverted;
 import frc.robot.commands.Drive.TurnRobot;
 import frc.robot.commands.Elevator.*;
 import frc.robot.triggers.GamepadJoystick;
 import frc.robot.triggers.TriggerButtonLeft;
 import frc.robot.triggers.TriggerButtonRight;
-import frc.robot.commands.Climber.ClimberDeployBack;
-import frc.robot.commands.Climber.ClimberDeployFront;
-import frc.robot.commands.Climber.ClimberRetractBack;
-import frc.robot.commands.Climber.ClimberRetractFront;
-
-
-
 
 /**
  * This class is the glue that binds the controls on the physical operator
@@ -147,8 +142,8 @@ public class OI {
 //			gamepadPOVU.whenPressed(new ElevatorSnapUp());
 //			gamepadPOVD.whenPressed(new ElevatorSnapDown());
 //		}
-		//gamepadPOVU.whileHeld(new ElevatorUp());
-		//gamepadPOVD.whileHeld(new ElevatorDown());
+		gamepadPOVU.whileHeld(new ElevatorUp());
+		gamepadPOVD.whileHeld(new ElevatorDown());
 
 		if(Robot.isCompRobot) {
 			gamepadButton5.whileHeld(new Intake());
@@ -161,8 +156,8 @@ public class OI {
 			gamepadButton1.whileHeld(new BallTransformDown());
 		}
 
-		gamepadPOVU.whenPressed(new ElevatorSnapUp());
-		gamepadPOVD.whenPressed(new ElevatorSnapDown());
+//		gamepadPOVU.whenPressed(new ElevatorSnapUp());
+//		gamepadPOVD.whenPressed(new ElevatorSnapDown());
 
 		if(Robot.isCompRobot) {
 			gamepadTriggerButtonRight.whenActive(new ClawToggle());
@@ -171,15 +166,21 @@ public class OI {
 //		gamepadButton1.whenPressed(new TimedDriveFoward());
 
 		leftJoystickButton7.whenPressed(new ElevatorSetPos(11));
+		leftJoystickButton1.whileHeld(new DriveWithClimber());
 
 		rightJoystickButton10.whileHeld(driveStraight);
 		rightJoystickButton11.whenPressed(new TurnRobot(90));
 
 		//Climber
-		leftJoystickButtonPOVU.whileHeld(new ClimberDeployBack());
-		rightJoystickButtonPOVU.whileHeld(new ClimberDeployFront());
-		leftJoystickButtonPOVD.whileHeld(new ClimberRetractBack());
-		rightJoystickButtonPOVD.whileHeld(new ClimberRetractFront());
+		//leftJoystickButtonPOVD.whileHeld(new ClimberDeployBack());
+		//rightJoystickButtonPOVD.whileHeld(new ClimberDeployFront());
+		//leftJoystickButtonPOVU.whileHeld(new ClimberRetractBack());
+		//rightJoystickButtonPOVU.whileHeld(new ClimberRetractFront());
+
+		leftJoystickButtonPOVD.whileHeld(new RaiserTransform(Robot.raiser.back, -0.5d));
+		rightJoystickButtonPOVD.whileHeld(new RaiserTransform(Robot.raiser.front, 0.5d));
+		leftJoystickButtonPOVU.whileHeld(new RaiserTransform(Robot.raiser.back, 0.5));
+		rightJoystickButtonPOVU.whileHeld(new RaiserTransform(Robot.raiser.front, -0.5d));
 	}
-	
+
 }

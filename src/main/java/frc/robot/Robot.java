@@ -15,11 +15,7 @@ import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.robot.commands.AutonomousSandstorm;
 import frc.robot.commands.Drive.DriveWithJoysticks;
 import frc.robot.commands.Elevator.ElevatorSetPos;
-import frc.robot.subsystems.BallIntake;
-import frc.robot.subsystems.Claw;
-import frc.robot.subsystems.DriveTrain;
-import frc.robot.subsystems.Elevator;
-import frc.robot.subsystems.Climber;
+import frc.robot.subsystems.*;
 //import edu.wpi.first.networktables.NetworkTableEntry;
 //import edu.wpi.first.networktables.NetworkTableInstance;
 //import edu.wpi.first.networktables.NetworkTable;
@@ -40,6 +36,8 @@ public class Robot extends TimedRobot {
 	public static boolean isOnClaw = true;
 	public static boolean isCompRobot = true;
 	public static Climber climber;
+	public static ClimberDrive climberDrive;
+	public static Raiser raiser;
 	Compressor compressor;
 
 	AutonomousSandstorm m_autonomousCommand;
@@ -65,10 +63,12 @@ public class Robot extends TimedRobot {
 		ballIntake = new BallIntake();
 		elevator = new Elevator(RobotMap.talon_EL);
 		climber = new Climber();
+		climberDrive = new ClimberDrive();
+		raiser = new Raiser();
 		m_oi = new OI(); m_oi.init();
 		compressor = new Compressor(0);
 		drive = new DriveWithJoysticks();
-		
+
 
 		CameraServer.getInstance().startAutomaticCapture(0);
 		CameraServer.getInstance().startAutomaticCapture(1);
