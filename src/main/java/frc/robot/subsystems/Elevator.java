@@ -41,7 +41,6 @@ public class Elevator extends Subsystem {
 		if (Robot.isCompRobot) {
 			cir = 7.493f;
 		} else {
-			I
 			cir = 6.000f;
 		}
 
