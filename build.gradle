@@ -2,6 +2,8 @@ plugins {
     id "java"
     id "edu.wpi.first.GradleRIO" version "2019.3.2"
     id 'idea'
+    id "org.gradle.java"
+    id "com.scuilion.syntastic" version "0.3.8"
 }
 
 def ROBOT_MAIN_CLASS = "frc.robot.Main"

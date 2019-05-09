@@ -166,3 +166,6 @@ out/
 
 # Unused folder
 src/main/deploy
+
+# Vim plugins
+.syntastic_javac_config
