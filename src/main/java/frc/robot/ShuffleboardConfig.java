@@ -8,8 +8,6 @@ import frc.robot.commands.AutonomousSandstorm;
 
 import static frc.robot.RobotMap.clawSolenoid;
 import static frc.robot.RobotMap.talon_EL;
-
-//import edu.wpi.first.wpilibj.smartdashboard.*;
 import static frc.robot.Robot.elevator;
 
 public class ShuffleboardConfig {
@@ -32,13 +30,11 @@ public class ShuffleboardConfig {
 	}
 
 	public static void updateValues() {
-//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
-//		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
-
+		// SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
+		// SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
+		// SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
+		// SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
 		SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
-		// SmartDashboard.putNumber("Encoder Value", encoder.);
 		SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
 		SmartDashboard.putNumber("Calculated PID Value", (int) ((11 * 4096 * 36) / (7.493f * 15)));
 	}
@@ -47,33 +43,30 @@ public class ShuffleboardConfig {
 		ypr = new double[3];
 		RobotMap.pigeon.getYawPitchRoll(ypr);
 		SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
-		// SmartDashboard.putNumber("Encoder Value", encoder.)
 		SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
 		SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (elevator.cir * 15)));
 		SmartDashboard.putNumber("Encoder Value in Inches", ((talon_EL.getSelectedSensorPosition() * 2 * elevator.cir * 15) / (4096 * 36)));
 		SmartDashboard.putNumber("Target Elevator Level", elevator.getLevel());
 		SmartDashboard.putNumber("Elevator Speed", talon_EL.getMotorOutputPercent());
-		{//		SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
-//		SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
-//		SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
+		// SmartDashboard.putNumber("Table X", xEntry.getDouble(0.0));
+		// SmartDashboard.putNumber("Table Y", yEntry.getDouble(0.0));
+		// SmartDashboard.putNumber("Table Z", sizeEntry.getDouble(0.0));
+		// SmartDashboard.putBoolean("Limite Switche", ballIntake.isSwitchSet());
 
-			SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
-			// SmartDashboard.putNumber("Encoder Value", encoder.);
-			SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
+		SmartDashboard.putNumber("Pigeon Angle", ypr[0]);
+		SmartDashboard.putNumber("Encoder Value", talon_EL.getSelectedSensorPosition());
 
-			SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (7.493f * 15)));
-			switch (clawSolenoid.get()) {
-				case kOff:
-					SmartDashboard.putString("Solenoid State", "Off");
-					break;
-				case kReverse:
-					SmartDashboard.putString("Solenoid State", "Reverse");
-					break;
-				case kForward:
-					SmartDashboard.putString("Solenoid State", "Forward");
-					break;
-			}
+		SmartDashboard.putNumber("Calculated PID Value", ((11 * 4096 * 36) / (7.493f * 15)));
+		switch (clawSolenoid.get()) {
+			case kOff:
+				SmartDashboard.putString("Solenoid State", "Off");
+				break;
+			case kReverse:
+				SmartDashboard.putString("Solenoid State", "Reverse");
+				break;
+			case kForward:
+				SmartDashboard.putString("Solenoid State", "Forward");
+				break;
 		}
 	}
 }

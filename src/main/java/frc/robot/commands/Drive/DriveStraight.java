@@ -11,7 +11,7 @@ public class DriveStraight extends Command {
 
 	@Override
 	protected void initialize() {
-//		RobotMap.pigeon.setYawToCompass();
+		// RobotMap.pigeon.setYawToCompass();
 		RobotMap.pigeon.setYaw(0d);
 
 		talon_BL.setInverted(true);

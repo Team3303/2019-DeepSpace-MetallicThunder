@@ -1,8 +1,8 @@
+package frc.robot.sensors;
+
 /**
  * Simple class containing constants used throughout project
  */
-package frc.robot.sensors;
-
 public class Constants {
 	/**
 	 * Which PID slot to pull gains from. Starting 2018, you can choose from
@@ -28,12 +28,6 @@ public class Constants {
 	 * Gains(kp, ki, kd, kf, izone, peak output);
 	 */
 	public static final Gains kGains = new Gains(0.4, 0.001, 0.0, 0.64735, 0, 1.0);
-
-	/**
-	 * Simple class containing constants used throughout project
-	 */
-
-
 
 	/**
 	 * Number of joystick buttons to poll.

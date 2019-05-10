@@ -1,10 +1,3 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
 import com.ctre.phoenix.motorcontrol.*;
@@ -23,8 +16,8 @@ import frc.robot.sensors.Constants;
 public class DriveTrain extends Subsystem {
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
-//	WPI_VictorSPX talon_FL;
-//	WPI_VictorSPX talon_FR;
+	// WPI_VictorSPX talon_FL;
+	// WPI_VictorSPX talon_FR;
 	WPI_TalonSRX talon_FL;
 	WPI_TalonSRX talon_FR;
 	WPI_TalonSRX talon_BL;
@@ -101,9 +94,9 @@ public class DriveTrain extends Subsystem {
 														Constants.kTimeoutMs);
 
 		/* Configure output and sensor direction */
-//		talon_BL.setSensorPhase(true);
-//		talon_BR.setInverted(true);
-//		talon_BR.setSensorPhase(true);
+		// talon_BL.setSensorPhase(true);
+		// talon_BR.setInverted(true);
+		// talon_BR.setSensorPhase(true);
 
 		/* Set status frame periods to ensure we don't have stale data */
 		talon_BR.setStatusFramePeriod(StatusFrame.Status_12_Feedback1, 20, Constants.kTimeoutMs);
@@ -165,27 +158,28 @@ public class DriveTrain extends Subsystem {
 		talon_BR.configAuxPIDPolarity(false, Constants.kTimeoutMs);
 
 		/* Initialize */
-//		_firstCall = true;
-//		_state = false;
+		// _firstCall = true;
+		// _state = false;
 		talon_BR.setStatusFramePeriod(StatusFrameEnhanced.Status_10_Targets, 10, Constants.kTimeoutMs);
 		talon_BR.setStatusFramePeriod(StatusFrame.Status_14_Turn_PIDF1, 20, Constants.kTimeoutMs);
-//		zeroSensors();
+		// zeroSensors();
 	}
 
 	public void tankDrive(double leftValue, double rightValue) {
 		differentialDrive.tankDrive(leftValue, rightValue);
 	}
+
 	public void driveStraight(double target_turn) {
 		talon_BR.set(ControlMode.PercentOutput, 0.2, DemandType.AuxPID, target_turn);
-//		talon_BR.set(ControlMode.PercentOutput, -0.5, DemandType.AuxPID, target_turn);
-//		talon_BL.follow(talon_BR, FollowerType.AuxOutput1);
+		// talon_BR.set(ControlMode.PercentOutput, -0.5, DemandType.AuxPID, target_turn);
+		// talon_BL.follow(talon_BR, FollowerType.AuxOutput1);
 		talon_BL.follow(talon_BR, FollowerType.PercentOutput);
 	}
 
 	public void turn(double target_turn) {
 		talon_BR.set(ControlMode.PercentOutput, 0.1, DemandType.AuxPID, target_turn);
-//		talon_BR.set(ControlMode.PercentOutput, -0.5, DemandType.AuxPID, target_turn);
-//		talon_BL.follow(talon_BR, FollowerType.AuxOutput1);
+		// talon_BR.set(ControlMode.PercentOutput, -0.5, DemandType.AuxPID, target_turn);
+		// talon_BL.follow(talon_BR, FollowerType.AuxOutput1);
 		talon_BL.follow(talon_BR, FollowerType.PercentOutput);
 	}
 
@@ -194,5 +188,4 @@ public class DriveTrain extends Subsystem {
 		// Set the default command for a subsystem here.
 		// setDefaultCommand(new MySpecialCommand());
 	}
-
 }
