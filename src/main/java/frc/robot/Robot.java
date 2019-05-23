@@ -37,7 +37,6 @@ public class Robot extends TimedRobot {
 	public static boolean isCompRobot = true;
 	public static Climber climber;
 	public static ClimberDrive climberDrive;
-	public static Raiser raiser;
 	Compressor compressor;
 
 	AutonomousSandstorm m_autonomousCommand;
@@ -56,7 +55,6 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotInit() {
-
 		RobotMap.init();
 		driveTrain = new DriveTrain();
 		claw = new Claw();
@@ -64,7 +62,6 @@ public class Robot extends TimedRobot {
 		elevator = new Elevator(RobotMap.talon_EL);
 		climber = new Climber();
 		climberDrive = new ClimberDrive();
-		raiser = new Raiser();
 		m_oi = new OI(); m_oi.init();
 		compressor = new Compressor(0);
 		drive = new DriveWithJoysticks();
@@ -73,13 +70,13 @@ public class Robot extends TimedRobot {
 		CameraServer.getInstance().startAutomaticCapture(0);
 		CameraServer.getInstance().startAutomaticCapture(1);
 
-//		networkTableInstance = NetworkTableInstance.getDefault();
-//		networkTableInstance.startServer();
+		// networkTableInstance = NetworkTableInstance.getDefault();
+		// networkTableInstance.startServer();
 
-//		table = networkTableInstance.getTable("Datatable");
-//		xEntry = table.getEntry("x");
-//		yEntry = table.getEntry("y");
-//		sizeEntry = table.getEntry("size");
+		// table = networkTableInstance.getTable("Datatable");
+		// xEntry = table.getEntry("x");
+		// yEntry = table.getEntry("y");
+		// sizeEntry = table.getEntry("size");
 	}
 
 	/**
@@ -92,8 +89,8 @@ public class Robot extends TimedRobot {
 	 */
 	@Override
 	public void robotPeriodic() {
-//		System.out.println("isConnected:" + networkTableInstance.isConnected());
-//		System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
+		// System.out.println("isConnected:" + networkTableInstance.isConnected());
+		// System.out.println("networkMode:" + networkTableInstance.getNetworkMode());
 	}
 
 	/**
@@ -149,13 +146,16 @@ public class Robot extends TimedRobot {
 	@Override
 	public void teleopInit() {
 		compressor.setClosedLoopControl(true);
+
 		// This makes sure that the autonomous stops running when
 		// teleop starts running. If you want the autonomous to
 		// continue until interrupted by another command, remove
 		// this line or comment it out.
+
 		if (m_autonomousCommand != null) {
 			m_autonomousCommand.cancel();
 		}
+
 		drive.start();
 	}
 
@@ -171,11 +171,9 @@ public class Robot extends TimedRobot {
 		ShuffleboardConfig.outputSensorValues();
 	}
 
-
 	/**
 	 * This function is called periodically during test mode.
 	 */
 	@Override
-	public void testPeriodic() {
-	}
+	public void testPeriodic() { }
 }

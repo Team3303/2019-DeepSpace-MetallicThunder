@@ -1,8 +1,8 @@
+package frc.robot.sensors;
+
 /**
  *  Class that organizes gains used when assigning values to slots
  */
-package frc.robot.sensors;
-
 public class Gains {
 	public final double kP;
 	public final double kI;

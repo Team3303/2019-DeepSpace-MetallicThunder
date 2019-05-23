@@ -23,7 +23,6 @@ import frc.robot.triggers.TriggerButtonRight;
  * interface to the commands and command groups that allow control of the robot.
  */
 public class OI {
-
 	// Additionally, by subclassing Button you can create custom triggers and bind those to
 	// commands the same as any other Button.
 
@@ -98,8 +97,7 @@ public class OI {
 	GamepadJoystick gamepadIsUsingLeftJoystick = new GamepadJoystick(1);
 
 	// This constructor is to define macros for the Joystick and Gamepad buttons.
-	public OI() {
-	}
+	public OI() { }
 
 	// GAMEPAD TRIGGERS
 	public double getGamePadRightTrigger() { return gamepad.getRawAxis(3); }
@@ -118,69 +116,52 @@ public class OI {
 	public double getGamePadRIghtJoystickY() { return gamepad.getRawAxis(5); }
 
 	void init() {
-
+		// custom buttons setup
 		gamepadTriggerButtonRight = new TriggerButtonRight();
 		gamepadTriggerButtonLeft = new TriggerButtonLeft();
 
+		// drive optimization controls
 		driveInverse = new DriveWithJoysticksInverted();
 		driveStraight = new DriveStraight();
 
+		// competition-robot-specific controls
 		if(Robot.isCompRobot) {
-			rightJoystickButton1.whileHeld(new Outtake());
+			// drive optimization controls
 			rightJoystickButton5.whileHeld(driveInverse);
-		}
 
-		if(Robot.isCompRobot) {
+			// mechanism selection controls
 			gamepadPOVL.whenPressed(new SetToClaw());
 			gamepadPOVR.whenPressed(new SetToBallIntake());
-		}
 
-//		if(ShuffleboardConfig.elevatorModeChooser.getSelected() == false) {
-//			gamepadPOVU.whileHeld(new ElevatorUp());
-//			gamepadPOVD.whileHeld(new ElevatorDown());
-//		} else {
-//			gamepadPOVU.whenPressed(new ElevatorSnapUp());
-//			gamepadPOVD.whenPressed(new ElevatorSnapDown());
-//		}
-		gamepadPOVU.whileHeld(new ElevatorUp());
-		gamepadPOVD.whileHeld(new ElevatorDown());
-
-		if(Robot.isCompRobot) {
+			// claw controls
 			gamepadButton5.whileHeld(new Intake());
 			gamepadButton6.whileHeld(new Outtake());
-		}
-		gamepadButton8.whenPressed(new ResetEncoder(Robot.elevator));
+			rightJoystickButton1.whileHeld(new Outtake());
 
-		if(Robot.isCompRobot) {
+			// claw rotate up/down controls
 			gamepadButton4.whileHeld(new BallTransformUp());
 			gamepadButton1.whileHeld(new BallTransformDown());
-		}
 
-//		gamepadPOVU.whenPressed(new ElevatorSnapUp());
-//		gamepadPOVD.whenPressed(new ElevatorSnapDown());
-
-		if(Robot.isCompRobot) {
 			gamepadTriggerButtonRight.whenActive(new ClawToggle());
 		}
 
-//		gamepadButton1.whenPressed(new TimedDriveFoward());
+		// elevator controls (global)
+		gamepadPOVU.whileHeld(new ElevatorUp());
+		gamepadPOVD.whileHeld(new ElevatorDown());
 
+		// dunno
 		leftJoystickButton7.whenPressed(new ElevatorSetPos(11));
-		leftJoystickButton1.whileHeld(new DriveWithClimber());
 
+		// sensor testing controls
 		rightJoystickButton10.whileHeld(driveStraight);
 		rightJoystickButton11.whenPressed(new TurnRobot(90));
+		gamepadButton8.whenPressed(new ResetEncoder(Robot.elevator));
 
-		//Climber
-		//leftJoystickButtonPOVD.whileHeld(new ClimberDeployBack());
-		//rightJoystickButtonPOVD.whileHeld(new ClimberDeployFront());
-		//leftJoystickButtonPOVU.whileHeld(new ClimberRetractBack());
-		//rightJoystickButtonPOVU.whileHeld(new ClimberRetractFront());
-
-		leftJoystickButtonPOVD.whileHeld(new RaiserTransform(Robot.raiser.back, -0.5d));
-		rightJoystickButtonPOVD.whileHeld(new RaiserTransform(Robot.raiser.front, 0.5d));
-		leftJoystickButtonPOVU.whileHeld(new RaiserTransform(Robot.raiser.back, 0.5));
-		rightJoystickButtonPOVU.whileHeld(new RaiserTransform(Robot.raiser.front, -0.5d));
+		// climber controls
+		leftJoystickButtonPOVD.whileHeld(new ClimberTransform(Robot.climber.back, -0.5d));
+		rightJoystickButtonPOVD.whileHeld(new ClimberTransform(Robot.climber.front, 0.5d));
+		leftJoystickButtonPOVU.whileHeld(new ClimberTransform(Robot.climber.back, 0.5));
+		rightJoystickButtonPOVU.whileHeld(new ClimberTransform(Robot.climber.front, -0.5d));
+		leftJoystickButton1.whileHeld(new DriveWithClimber());
 	}
-
 }

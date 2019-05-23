@@ -1,42 +1,33 @@
-/*----------------------------------------------------------------------------*/
-/* Copyright (c) 2018 FIRST. All Rights Reserved.                             */
-/* Open Source Software - may be modified and shared by FRC teams. The code   */
-/* must be accompanied by the FIRST BSD license file in the root directory of */
-/* the project.                                                               */
-/*----------------------------------------------------------------------------*/
-
 package frc.robot.subsystems;
 
+import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
-import static frc.robot.RobotMap.*;
+import frc.robot.RobotMap;
 
 /**
- * Add your docs here.
+ * Subsystem definition for the robot elevator.
  */
 public class Climber extends Subsystem {
-  // Put methods for controlling this subsystem
-  // here. Call these from Commands.
-  public Climber(){
+	public WPI_TalonSRX talon_CFL;
+	public WPI_TalonSRX talon_CFR;
+	public WPI_TalonSRX talon_CB;
 
-  }
-  public void climberFrontSet (double speed) {
-    talon_CFL.set(speed);
-    talon_CFR.set(speed);
+	public final boolean front = true;
+	public final boolean back = false;
 
-  }
-  public void climberBackSet (double speed) {
-//    talon_CBL.set(speed);
-//    talon_CBR.set(-speed);
-    talon_CB.set(speed);
-  }
+	public Climber() {
+		this.talon_CFL = RobotMap.talon_CFL;
+		this.talon_CFR = RobotMap.talon_CFR;
+		this.talon_CB = RobotMap.talon_CB;
+	}
 
-  
+	public void setTalon(WPI_TalonSRX talon, double speed) {
+		talon.set(speed);
+	}
 
-  @Override
-  public void initDefaultCommand() {
-    // Set the default command for a subsystem here.
-    // setDefaultCommand(new MySpecialCommand());
-
-  }
+	@Override
+	public void initDefaultCommand() {
+		// Set the default command for a subsystem here.
+		// setDefaultCommand(new MySpecialCommand());
+	}
 }

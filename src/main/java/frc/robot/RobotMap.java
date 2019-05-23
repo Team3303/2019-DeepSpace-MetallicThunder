@@ -25,18 +25,11 @@ public class RobotMap {
 	public static final int TALON_EL_ID = 6;
 	public static final int TALON_BROT_ID = 7;
 
-//	public static WPI_VictorSPX talon_FL;
-//	public static WPI_VictorSPX talon_FR;
-
 	public static final int TALON_CFR_ID = 8;
 	public static final int TALON_CFL_ID = 9;
-//	public static final int TALON_CBL_ID = 10;
-//	public static final int TALON_CBR_ID = 11;
 	public static final int TALON_CB_ID = 10;
 	public static final int TALON_CD_ID = 12;
 
-//	public static WPI_VictorSPX talon_FL;
-//	public static WPI_VictorSPX talon_FR;
 	public static WPI_TalonSRX talon_FL;
 	public static WPI_TalonSRX talon_FR;
 	public static WPI_TalonSRX talon_BL;
@@ -49,8 +42,6 @@ public class RobotMap {
 	public static Spark spark_BIR;
 	public static WPI_TalonSRX talon_CFL;
 	public static WPI_TalonSRX talon_CFR;
-//	public static WPI_TalonSRX talon_CBL;
-//	public static WPI_TalonSRX talon_CBR;
 	public static WPI_TalonSRX talon_CB;
 	public static WPI_TalonSRX talon_CD;
 
@@ -60,31 +51,31 @@ public class RobotMap {
 	public static PigeonIMU pigeon;
 	public static Encoder encoder;
 
-
 	public static void init() {
-		// Motorcontrollers
-	//	talon_FL = new WPI_VictorSPX(RobotMap.TALON_FL_ID);
-	//	talon_FR = new WPI_VictorSPX(RobotMap.TALON_FR_ID);
+		// wheel motorcontrollers
 		talon_FL = new WPI_TalonSRX(RobotMap.TALON_FL_ID);
 		talon_FR = new WPI_TalonSRX(RobotMap.TALON_FR_ID);
 		talon_BL = new WPI_TalonSRX(RobotMap.TALON_BL_ID);
 		talon_BR = new WPI_TalonSRX(RobotMap.TALON_BR_ID);
-		talon_EL = new WPI_TalonSRX(RobotMap.TALON_EL_ID);
-		ballRotator = new WPI_TalonSRX(RobotMap.TALON_BROT_ID);
+
+		// climber motorcontrollers
 		talon_CFR = new WPI_TalonSRX(RobotMap.TALON_CFR_ID);
 		talon_CFL = new WPI_TalonSRX(RobotMap.TALON_CFL_ID);
 		talon_CB = new WPI_TalonSRX(RobotMap.TALON_CB_ID);
-//		talon_CBR = new WPI_TalonSRX(RobotMap.TALON_CBR_ID);
-//		talon_CBL = new WPI_TalonSRX(RobotMap.TALON_CBL_ID);
 		talon_CD = new WPI_TalonSRX(RobotMap.TALON_CD_ID);
 
+		// claw motorcontrollers
 		talon_BI = new WPI_TalonSRX(RobotMap.TALON_BI_ID);
+		ballRotator = new WPI_TalonSRX(RobotMap.TALON_BROT_ID);
 
-		// Solenoids
+		// elevator motorcontroller
+		talon_EL = new WPI_TalonSRX(RobotMap.TALON_EL_ID);
+
+		// claw solenoids
 		clawSolenoid = new DoubleSolenoid(0, 1);
 		clawInAndOut = new DoubleSolenoid(2, 3);
 
-		// Sensors
+		// spidey sensors
 		pigeon = new PigeonIMU(0);
 		encoder = new Encoder(0,1);
 	}
@@ -92,5 +83,4 @@ public class RobotMap {
 	public static void resetControllers() {
 		talon_EL.set(0);
 	}
-
 }

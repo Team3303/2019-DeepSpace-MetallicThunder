@@ -4,9 +4,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class ElevatorDown extends Command {
-
 	public ElevatorDown() {
-		// Use requires() here to declare subsystem dependencies
+		// Use requires () here to declare subsystem dependencies
 		requires(Robot.elevator);
 	}
 

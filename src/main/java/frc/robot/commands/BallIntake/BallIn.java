@@ -4,8 +4,7 @@ import edu.wpi.first.wpilibj.command.Command;
 import frc.robot.Robot;
 
 public class BallIn extends Command {
-	public BallIn() {
-	}
+	public BallIn() { }
 
 	@Override
 	protected void initialize() {
@@ -13,8 +12,7 @@ public class BallIn extends Command {
 	}
 
 	@Override
-	protected void execute() {
-	}
+	protected void execute() { }
 
 	@Override
 	protected boolean isFinished() {
